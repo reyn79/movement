@@ -1,0 +1,104 @@
+---
+layout: default.hbs
+title: "Movement Martial Arts - Best Sydney BJJ Kickboxing MMA Classes"
+pageid: "home"
+---
+<section class="intro-banner {{pageid}}">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-md-5 line hidden-sm hidden-xs">
+                <hr>
+            </div> -->
+            <div class="col-md-2 text-center hidden-md hidden-lg">
+                <img src="img/logo.png" height="45%" width="45%">
+            </div>
+            <!-- <div class="col-md-5 line hidden-sm hidden-xs">
+                <hr>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 hidden-sm hidden-xs text-center">
+                <h1>Movement <small>Martial Arts</small></h1>
+            </div>
+        </div>
+        <div class="space-40"></div>
+        <div class="row">
+            <!-- <div class="col-md-6 text-right">
+                <a href="#intro-text" role="button" class="btn btn-lg btn-theme-bg smoothLink">Who are we?</a>
+            </div> -->
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-lg btn-theme-bg" data-toggle="modal" data-target="#sizzle">Video CTA</button>
+            </div>
+        </div>
+    </div>
+    <a href="#intro-text" role="button" class="moreLink smoothLink"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+</section>
+<section class="segment intro-wrap" id="intro-text">
+    <div class="container">
+        <div class="row row-flex row-flex-wrap">
+            <div class="col-md-4">
+                <div class="well">
+                    <h2>Who is<br><span class="lobster">Movement?</h2>
+                    <p class="text-center"><img src="img/boys.jpg" class="img-responsive"></p>
+                    <p>Movement Martial Arts is a martial arts gym and club based in Sydney which provides classes and coaching specialising in Brazilian Jiu Jitsu (BJJ), Muay Thai Kickboxing, and Mixed Martial Arts (MMA). We offer classes and training to suit ages 6+, for people of all sizes and skill levels.
+                    </p>
+                    <p>Come join our family...</p>
+                    <div class="space-20"></div>
+                    <p><a href="#portfolio" class="btn btn-lg btn-theme-bg">Claim your free trial!</i></a></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <h2>What is<br><span class="diplomata">BJJ?</span></h2>
+                    <p class="text-center"><img src="img/triangle.jpg" class="img-responsive"></p>
+                    <p>BJJ is a combat sport and a self-defence system that focuses on grappling and ground fighting, emphasising position, control and submissions such as chokes, arm locks and leg locks.</p>
+                    <p>Our head coaches have many years of experience in both coaching and competition, so come join our BJJ classes!</p>
+                    <div class="space-20"></div>
+                    <p><a href="#portfolio" class="btn btn-lg btn-theme-bg">What makes BJJ special?</a></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    <h2>What is<br><span class="luckyguy">Muay Thai?</span></h2>
+                    <p class="text-center"><img src="img/kick.jpg" class="img-responsive"></p>
+                    <p>Muay Thai is a style of kickboxing that originates from Thailand and uses the whole body. It is referred to as the art of 8 limbs, incorporating hands, elbows, feet, knees and grappling into a comprehensive and effective striking based martial art.</p>
+                    <p>Call to action blurb</p>
+                    <p><a href="#testimonials" class="btn btn-lg btn-theme-bg">Why learn Muay Thai?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="testimonials">
+    <div class="container">
+        <div id="test-car" class="carousel slide">
+            <!-- Wrapper for slides -->
+            <!-- TO-DO mobile version, stack profile image? -->
+            <div class="carousel-inner" role="listbox">
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#test-car" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#test-car" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 text-center">
+                <h4>Ready to call to action?</h4>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href="#" class="btn btn-lg btn-theme-bg" data-toggle="modal" data-target="#freetrial">Claim Free Trial</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modals - placed here to avoid position relative weirdness -->
+{{> modals}}

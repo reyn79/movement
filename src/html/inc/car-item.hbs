@@ -1,0 +1,20 @@
+{{#each this}}
+<div class="item{{#if @first}} active{{/if}}">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="{{profile_photo_url}}" alt="{{author_name}}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <p>{{text}}
+                        <span>{{author_name}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

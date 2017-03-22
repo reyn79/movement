@@ -1,0 +1,24 @@
+{
+  "navitem": [
+    {
+      "key": "Home",
+      "data": "index.html"
+    },
+    {
+      "key": "About",
+      "data": "about.html"
+    },
+    {
+      "key": "Styles",
+      "data": "styles.html"
+    },
+    {
+      "key": "Timetable",
+      "data": "timetable.html"
+    },
+    {
+      "key": "Talk to us",
+      "data": "contact.html"
+    }
+  ]
+}
