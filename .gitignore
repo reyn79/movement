@@ -1,0 +1,30 @@
+# Ignore compilation results
+target
+/dist
+/docs
+/node_modules
+/reports
+/build
+
+# Ignore IDE and Operating System artifacts
+.idea
+.classpath
+.metadata
+.project
+.settings
+maven-eclipse.xml
+*.iml
+*.ipr
+*.iws
+*.rej
+.DS_Store
+*.sublime-workspace
+
+# Ignore binary folders
+*.orig
+
+# Ignore source maps
+*.map
+
+# Ignore stackdumps
+*.stackdump
