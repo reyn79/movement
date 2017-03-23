@@ -3,9 +3,14 @@
 
 module.exports = {
 	// compile less stylesheets to css
-	build: {
+	dev: {
 		files: {
 			'<%= config.dist.css %>/styles.css': ['<%= config.src.css %>/**/*.less','<%= config.src.css %>/**/*.css']
+		}
+	},
+	prod: {
+		files: {
+			'<%= config.src.base %>/temp/styles.css': ['<%= config.src.css %>/**/*.less','<%= config.src.css %>/**/*.css']
 		}
 	},
 	bootstrap: {

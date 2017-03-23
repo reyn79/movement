@@ -7,5 +7,8 @@ module.exports = {
     ],
     templates: [
     	"<%= config.src.js %>/*.tmpl.js"
+    ],
+    temp: [
+    	"<%= config.src.base %>/temp"
     ]
 };

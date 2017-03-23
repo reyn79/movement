@@ -84,7 +84,8 @@ module.exports = function(grunt) {
     // create template file
     'handlebars',
     // compile less
-    'less',
+    'less:dev',
+    'less:bootstrap',
     // join all files that need to be
     'concat',
     // copy up main site resources and processed libs
@@ -107,7 +108,10 @@ module.exports = function(grunt) {
     // create template file
     'handlebars',
     // compile less
-    'less',
+    'less:prod',
+    'less:bootstrap',
+    // minify css
+    'cssmin',
     // join all files that need to be
     'concat:libjs',
     // minify
@@ -132,7 +136,10 @@ module.exports = function(grunt) {
     // create template file
     'handlebars',
     // compile less
-    'less',
+    'less:prod',
+    'less:bootstrap',
+    // minify css
+    'cssmin',
     // join all files that need to be
     'concat:libjs',
     // minify

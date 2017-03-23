@@ -12,7 +12,7 @@ var movement = (function() {
   var ID;
   CONST = {
     gak: 'AIzaSyAerv0HM1ZRtnN1hqRHb545CVYhGRGNd_w',
-    bgArray: [ /*'bg-home.jpg', 'kickbox-girl.jpg'*/ ],
+    bgArray: [ 'bg-home.jpg', 'kickbox-girl.jpg' ],
     imgPath: 'img/'
   };
   CLASSES = {
