@@ -6,7 +6,8 @@ target
 /reports
 /build
 /src/temp
-
+/src/libs
+/src/js/templates.tmpl.js
 
 # Ignore IDE and Operating System artifacts
 .idea
