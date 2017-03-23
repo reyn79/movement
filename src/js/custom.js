@@ -12,7 +12,7 @@ var movement = (function() {
   var ID;
   CONST = {
     gak: 'AIzaSyAerv0HM1ZRtnN1hqRHb545CVYhGRGNd_w',
-    bgArray: [  'bg-home.jpg', 'kickbox-girl.jpg'  ],
+    bgArray: ['bg-home.jpg', 'kickbox-girl.jpg'],
     imgPath: 'img/'
   };
   CLASSES = {
@@ -28,6 +28,12 @@ var movement = (function() {
    * @type {Object}
    */
   var _private = {
+    activeNav: function() {
+      var body = document.querySelector('body');
+      var bodyClass = body.getAttribute('class');
+      // TO-DO loop through nav item, match class, apply active class
+      console.log(bodyClass);
+    },
     loadGoogle: function() {
       var scr = document.createElement('script');
       scr.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=' + CONST.gak + '&libraries=places&callback=movement.getGoogleReviews');
@@ -38,7 +44,7 @@ var movement = (function() {
       var movementhq = { lat: -33.783971, lng: 151.128471 };
       // search on maps right click "whats here?"
       var map = new google.maps.Map(document.getElementById('map'), {
-      	scrollwheel: false,
+        scrollwheel: false,
         center: movementhq,
         zoom: 15
       });
@@ -155,6 +161,17 @@ var movement = (function() {
     removeEvent: function(el, type, handler) {
       if (el.detachEvent) el.detachEvent('on' + type, handler);
       else el.removeEventListener(type, handler);
+    },
+    hasClass: function(el, className) {
+      return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
+    },
+    addClass: function(el, className) {
+      if (el.classList) el.classList.add(className);
+      else if (!hasClass(el, className)) el.className += ' ' + className;
+    },
+    removeClass: function(el, className) {
+      if (el.classList) el.classList.remove(className);
+      else el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
     }
   };
   /**
@@ -162,6 +179,7 @@ var movement = (function() {
    * @type {Object}
    */
   var _public = {
+    activeNav: _private.activeNav,
     loadGoogle: _private.loadGoogle,
     getGoogleReviews: _private.getGoogleReviews,
     changeBg: _private.changeBg,
@@ -173,11 +191,12 @@ var movement = (function() {
 
 function init() {
   var ctaShown = localStorage.getItem('freetrialshown');
+  movement.activeNav();
   movement.loadGoogle();
   movement.changeBg();
   movement.smoothLink();
-  if(!ctaShown) {
-  	movement.scrollCta();
+  if (!ctaShown) {
+    movement.scrollCta();
   }
 }
 // in case the document is already rendered

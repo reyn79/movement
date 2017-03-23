@@ -337,6 +337,12 @@ em {
   }
 }
 
+@media (min-width: 768px) and (max-width: 992px) {
+  #collapseone .navbar-nav {
+    width:80%;
+  }
+}
+
 @media (min-width: 992px) {
   .navbar-nav {
     float: left;
@@ -921,16 +927,10 @@ input[type="color"]:focus,
   padding: 50px 0 50px 0;
   width: 100%;
   background-color: #262626;
-  .media-left {
-    img {
-      float: left;
-      margin-right: 30px;
-      max-width: 128px;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-    }
-  }
-  .media-body {
+  .carousel-inner > .item {
+    padding: 0 120px 0 120px;
+}
+  .item-body {
     p {
       overflow: hidden;
       color: #fff;

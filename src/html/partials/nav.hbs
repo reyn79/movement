@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav">
     <!-- TO DO : redo nav using this http://assemble.io/docs/FAQ.html -->
     {{#navitem}}
-    <li {{#is pageid key}}class="active" {{/is}} {{#if special}}class="special" {{/if}}><a href="{{data}}">{{key}}</a></li>
+    <li {{#is pageid key}}class="active" {{/is}} {{#if class}}class="{{class}}" {{/if}}><a href="{{data}}">{{key}}</a></li>
     {{/navitem}}
 </ul>

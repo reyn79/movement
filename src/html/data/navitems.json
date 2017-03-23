@@ -2,23 +2,39 @@
   "navitem": [
     {
       "key": "Home",
-      "data": "index.html"
+      "data": "index.html",
+      "class": "home hidden-md hidden-lg"
     },
     {
       "key": "About",
-      "data": "about.html"
+      "data": "about.html",
+      "class": "about"
+
     },
     {
       "key": "Styles",
-      "data": "styles.html"
+      "data": "styles.html",
+      "class": "styles"
     },
     {
       "key": "Timetable",
-      "data": "timetable.html"
+      "data": "timetable.html",
+      "class": "timetable"
+    },
+    {
+      "key": "FAQs",
+      "data": "faq.html",
+      "class": "faqs"
+    },
+    {
+      "key": "Blog",
+      "data": "blog.html",
+      "class": "blog"
     },
     {
       "key": "Talk to us",
-      "data": "contact.html"
+      "data": "contact.html",
+      "class": "contact"
     }
   ]
 }
