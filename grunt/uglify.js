@@ -2,16 +2,17 @@
 // https://github.com/gruntjs/grunt-contrib-uglify
 module.exports = {
   // configure uglify to minify js files
-  prod: {
-    options: {
-      compress: {
-        warnings: false
-      },
-      mangle: true,
-      preserveComments: /^!|@preserve|@license|@cc_on/i
-    },
-    main: {
-      '<%= config.dist.js %>/script.min.js': '<%= config.src.js %>/*.js'
+  options: {
+    mangle: true
+  },
+  js: {
+    files: {
+      '<%= config.dist.js %>/script.js': ['<%= config.src.js %>/*.js']
+    }
+  },
+  libs: {
+    files: {
+      '<%= config.dist.libs.main %>/js/libs.js': '<%= config.src.libs.dist %>/js/*.js'
     }
   }
 };

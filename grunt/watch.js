@@ -34,4 +34,8 @@ module.exports = {
     files: ['<%= config.src.inc %>/*.hbs', ],
     tasks: ['clean:templates','handlebars','concat:mainjs']
   },
+  media: {
+    files: ['<%= config.src.media %>/*.*', ],
+    tasks: ['copy:main']
+  }
 };

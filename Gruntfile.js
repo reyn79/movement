@@ -96,8 +96,50 @@ module.exports = function(grunt) {
     // start watching for any changes to files
     'watch'
   ]);
-  // this task will only run the dev configuration 
-  //grunt.registerTask('dev', ['jshint:dev', 'uglify:prod', 'less', 'cssmin:dev']);
+  // Staging run to test resources build
+  grunt.registerTask('dev', [
+    // remove temp files
+    'clean',
+    // copy dependencies eg bootstrap etc
+    'copy:libs',
+    // lint js
+    'jshint',
+    // create template file
+    'handlebars',
+    // compile less
+    'less',
+    // join all files that need to be
+    'concat:libjs',
+    // minify
+    'uglify',
+    // copy up main site resources and processed libs
+    'copy:main',
+    // create pages from templates
+    'assemble',
+    // create server and load page
+    'connect', 'open:browser',
+    // start watching for any changes to files
+    'watch'
+  ]);
   // only run production configuration 
-  //grunt.registerTask('production', ['jshint:production', 'uglify:production', 'cssmin:production', 'less:production']);
+  grunt.registerTask('prod', [
+    // remove temp files
+    'clean',
+    // copy dependencies eg bootstrap etc
+    'copy:libs',
+    // lint js
+    'jshint',
+    // create template file
+    'handlebars',
+    // compile less
+    'less',
+    // join all files that need to be
+    'concat:libjs',
+    // minify
+    'uglify',
+    // copy up main site resources and processed libs
+    'copy:main',
+    // create pages from temnplates
+    'assemble'
+  ]);
 };

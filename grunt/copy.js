@@ -46,13 +46,6 @@ module.exports = {
   },
   main: {
     files: [
-    // Main JS files
-/*    {
-      expand: true,
-      cwd: '<%= config.src.js %>',
-      src: ['*.js'],
-      dest: '<%= config.dist.js %>'
-    }, */
     // Main image files
     {
       expand: true,
@@ -71,8 +64,18 @@ module.exports = {
     {
       expand: true,
       cwd: '<%= config.src.libs.dist %>',
-      src: ['**/*.*'],
+      src: ['css/*.css'],
       dest: '<%= config.dist.libs.main %>'
+    }]
+  },
+  libjs: {
+    files: [
+    // Processed libs
+    {
+      expand: true,
+      cwd: '<%= config.src.libs.dist %>',
+      src: ['<%= config.src.libs.dist %>/js/*.*'],
+      dest: '<%= config.dist.libs.main %>/js'
     }]
   }
 };

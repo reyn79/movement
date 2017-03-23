@@ -12,11 +12,12 @@ var movement = (function() {
   var ID;
   CONST = {
     gak: 'AIzaSyAerv0HM1ZRtnN1hqRHb545CVYhGRGNd_w',
-    bgArray: ['bg-home.jpg', 'kickbox-girl.jpg'],
+    bgArray: [ /*'bg-home.jpg', 'kickbox-girl.jpg'*/ ],
     imgPath: 'img/'
   };
   CLASSES = {
-    SMOOTHLINK: 'smoothLink',
+    NAVITEM: 'js-nav-item',
+    SMOOTHLINK: 'js-smooth-link',
     CAROUSEL: 'carousel-inner'
   };
   ID = {
@@ -31,8 +32,12 @@ var movement = (function() {
     activeNav: function() {
       var body = document.querySelector('body');
       var bodyClass = body.getAttribute('class');
-      // TO-DO loop through nav item, match class, apply active class
-      console.log(bodyClass);
+      var nav = document.getElementsByClassName(CLASSES.NAVITEM);
+      for (var i = nav.length - 1; i >= 0; i--) {
+        if(_helpers.hasClass(nav[i],bodyClass)) {
+          _helpers.addClass(nav[i],'active');
+        }
+      }
     },
     loadGoogle: function() {
       var scr = document.createElement('script');
@@ -53,22 +58,26 @@ var movement = (function() {
         map: map,
         icon: 'img/logo-pin.png'
       });
-      // request with place ID
-      // https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
-      var request = {
-        placeId: 'ChIJjdA5ZQimEmsRXJRgJr7gvDI'
-      };
-      // create place service call to get details
-      // https://developers.google.com/maps/documentation/javascript/places#place_details
-      var service = new google.maps.places.PlacesService(map);
-      service.getDetails(request, callback);
-      // place object has all data
-      // TO-DO: store somewhere? whats the logic?
-      function callback(place, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          _private.fillCarousel(place.reviews);
-        }
+      // Only if testimonial carousel exists
+      var testimonial = document.getElementById('testimonials');
+      if(testimonial) {
+        // request with place ID
+        // https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+        var request = {
+          placeId: 'ChIJjdA5ZQimEmsRXJRgJr7gvDI'
+        };
+        // create place service call to get details
+        // https://developers.google.com/maps/documentation/javascript/places#place_details
+        var service = new google.maps.places.PlacesService(map);
+        service.getDetails(request, callback);
+        // place object has all data
+        // TO-DO: store somewhere? whats the logic?
       }
+      function callback(place, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            _private.fillCarousel(place.reviews);
+          }
+        }
     },
     fillCarousel: function(arr) {
       var carPar = document.getElementById(ID.CARPAR);
