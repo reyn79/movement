@@ -74,8 +74,8 @@ module.exports = {
     {
       expand: true,
       cwd: '<%= config.src.libs.dist %>',
-      src: ['<%= config.src.libs.dist %>/js/*.*'],
-      dest: '<%= config.dist.libs.main %>/js'
+      src: ['js/*.*'],
+      dest: '<%= config.dist.libs.main %>'
     }]
   }
 };

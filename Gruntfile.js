@@ -90,6 +90,7 @@ module.exports = function(grunt) {
     'concat',
     // copy up main site resources and processed libs
     'copy:main',
+    'copy:libjs',
     // create pages from temnplates
     'assemble',
     // create server and load page
