@@ -1,40 +1,36 @@
 {
-  "navitem": [
-    {
-      "key": "Home",
-      "data": "index.html",
+  "navitem": [{
+    "key": "Home",
+    "data": "index.html",
+    "class": "home hidden-md hidden-lg"
+  }, {
+    "key": "Martial Arts",
+    "data": "about.html",
+    "class": "about",
+    "sub": [{
+      "key": "Meet the team",
+      "data": "about.html",
       "class": "home hidden-md hidden-lg"
-    },
-    {
-      "key": "About",
+    }, {
+      "key": "What are our styles?",
       "data": "about.html",
       "class": "about"
-
-    },
-    {
-      "key": "Styles",
-      "data": "styles.html",
-      "class": "styles"
-    },
-    {
-      "key": "Timetable",
-      "data": "timetable.html",
-      "class": "timetable"
-    },
-    {
-      "key": "FAQs",
-      "data": "faq.html",
-      "class": "faqs"
-    },
-    {
-      "key": "Blog",
+    }, {
+      "key": "Words in the void",
       "data": "blog.html",
       "class": "blog"
-    },
-    {
+    }, {
       "key": "Talk to us",
       "data": "contact.html",
       "class": "contact"
-    }
-  ]
+    }]
+  }, {
+    "key": "Words in the void",
+    "data": "blog.html",
+    "class": "blog"
+  }, {
+    "key": "Talk to us",
+    "data": "contact.html",
+    "class": "contact"
+  }]
 }
