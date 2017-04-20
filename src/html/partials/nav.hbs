@@ -1,13 +1,12 @@
 <ul class="nav navbar-nav">
     <!-- TO DO : redo nav using this http://assemble.io/docs/FAQ.html -->
     {{#navitem}}
-    <li {{#is pageid key}}class="active" {{/is}} {{#if class}}class="js-nav-item {{class}}{{#if sub}} dropdown{{/if}}" {{/if}}><a {{#if sub}}class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{{else}}href="{{data}}"{{/if}}>{{key}}</a> {{#if sub}}
+    <li {{#is pageid key}}class="active" {{/is}} {{#if class}}class="js-nav-item {{class}}{{#if sub}} dropdown{{/if}}" {{/if}}><a {{#if sub}}class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{{else}}href="{{data}}"{{/if}}>{{key}} {{#if sub}}<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>{{/if}}</a> {{#if sub}}
         <ul class="dropdown-menu">
             {{#sub}}
-            <li><a href="#">{{key}}</a></li>
+            <li><a href="{{data}}">{{key}}</a></li>
             {{/sub}}
         </ul>
-        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         {{/if}}
     </li>
     {{/navitem}}
