@@ -12,6 +12,7 @@ FONTS
   font-family: 'Lobster', cursive;
 }
 
+
 /* theme colors */
 
 @yell-lt: #FEDF22;
@@ -143,7 +144,10 @@ em {
   font-weight: 400;
 }
 
-.img-responsive { width:100%; }
+.img-responsive {
+  width: 100%;
+}
+
 
 /*
  * Row with equal height columns
@@ -304,8 +308,9 @@ em {
   }
 }
 
-.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
-     max-height: none;
+.navbar-fixed-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse {
+  max-height: none;
 }
 
 .navbar-inverse .navbar-brand {
@@ -330,6 +335,23 @@ em {
     color: #fff;
     text-transform: uppercase;
     font-weight: 600;
+  }
+}
+
+.navbar-nav {
+  > li {
+    > .dropdown-menu {
+      margin-top: 0;
+      border-radius: 15px;
+      background-color: @white-lt;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+  .dropdown-toggle {
+    span.glyphicon {
+      font-size: .8em;
+    }
   }
 }
 
@@ -475,7 +497,7 @@ em {
   .moreLink {
     position: absolute;
     bottom: 0;
-    font-size: 3em;
+    font-size: 2em;
     left: 50%;
     /* position the left edge of the element at the middle of the parent */
     transform: translate(-50%, -50%);
@@ -488,7 +510,8 @@ em {
 .about {
   .intro-banner {
     min-height: 60%;
-    background: rgb(0, 0, 0); /* Fallback for older browsers without RGBA-support */
+    background: rgb(0, 0, 0);
+    /* Fallback for older browsers without RGBA-support */
     background: rgba(0, 0, 0, 0.3);
   }
 }
@@ -563,7 +586,8 @@ em {
   font-size: 1.3em;
   opacity: .95;
   .row-flex {
-    .col-md-4 {
+    .col-md-4,
+    .col-md-12 {
       .well {
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
@@ -887,11 +911,23 @@ input[type="color"]:focus,
   width: 100%;
 }
 
+
 /********* About *********/
 
 #team {
   background-color: @white-lt;
   video {
-    height:250px;
+    height: 250px;
+  }
+}
+
+.team-desc {
+  padding: 25px;
+  background-color: #f5f5f5;
+  em {
+    color: yell-md;
+  }
+  .team-contact {
+    font-size: 2em;
   }
 }
