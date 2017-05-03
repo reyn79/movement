@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the site and how to install them
 
 ```
 node
@@ -38,18 +38,16 @@ Run 'grunt' on the folder to build and run local server for dev
 grunt
 ```
 
+## Deployment
+
+
 Run 'grunt prod' on the folder to just build assets needed to update site
 
 ```
 grunt prod
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-
-## Deployment
-
-Take 'grunt prod' built assets and FTP into web server to deploy
+Take assets from the dist folder and FTP into web server to deploy
 
 ## Built With
 
