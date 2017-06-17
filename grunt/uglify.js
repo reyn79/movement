@@ -1,8 +1,8 @@
 // Uglify minifies your files
 // https://github.com/gruntjs/grunt-contrib-uglify
 module.exports = {
-  // configure uglify to minify js files
-  options: {
+// configure uglify to minify js files
+options: {
     mangle: true
   },
   js: {
@@ -16,3 +16,5 @@ module.exports = {
     }
   }
 };
+
+

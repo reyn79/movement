@@ -1,0 +1,36 @@
+{
+  "navitem": [{
+    "key": "Home",
+    "data": "index.html",
+    "class": "home hidden-md hidden-lg"
+  }, {
+    "key": "All about movement",
+    "data": "about.html",
+    "class": "about",
+    "sub": [{
+      "key": "Meet the team",
+      "data": "about.html",
+      "class": "home hidden-md hidden-lg"
+    }, {
+      "key": "What are our styles?",
+      "data": "about.html",
+      "class": "about"
+    }, {
+      "key": "Words in the void",
+      "data": "blog.html",
+      "class": "blog"
+    }, {
+      "key": "Talk to us",
+      "data": "contact.html",
+      "class": "contact"
+    }]
+  }, {
+    "key": "Words in the void",
+    "data": "blog.html",
+    "class": "blog"
+  }, {
+    "key": "Talk to us",
+    "data": "contact.html",
+    "class": "contact"
+  }]
+}

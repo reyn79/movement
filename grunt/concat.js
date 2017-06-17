@@ -1,7 +1,7 @@
 module.exports = {
   // app js dependencies
 	libjs: {
-    src: 
+    src:
     [
           '<%= config.src.libs.js %>/handlebars/handlebars.js',
           '<%= config.src.libs.js %>/bootstrap/polyfill.js',
@@ -9,6 +9,7 @@ module.exports = {
           '<%= config.src.libs.js %>/bootstrap/dropdown-native.js',
           '<%= config.src.libs.js %>/bootstrap/collapse-native.js',
           '<%= config.src.libs.js %>/bootstrap/carousel-native.js',
+          '<%= config.src.libs.js %>/bootstrap/tab-native.js',
           '<%= config.src.libs.js %>/bootstrap/modal-native.js'
         ],
 		dest: '<%= config.src.libs.dist %>/js/libs.js'
