@@ -266,8 +266,11 @@ var movement = (function() {
 			var scrollOffset = headerEl[0].offsetHeight;
 			// where does the link want to go
 			var el = document.querySelector(this.getAttribute('href'));
+			// distance to top
+			var toTop = el.getBoundingClientRect().top;
+			console.log(toTop);
 			// scroll to the element minus the height of the header
-			document.documentElement.scrollTop = document.body.scrollTop = el.offsetTop - scrollOffset;
+			document.documentElement.scrollTop = document.body.scrollTop = toTop - scrollOffset;
 		},
 		/**
 		 * [scrollCta fires a CTA modal based on user funnel logic]
