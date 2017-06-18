@@ -7,7 +7,6 @@
  *
  * https://github.com/tim-montague/Definitive-Module-Pattern
  */
-
 var movement = (function() {
 	var CONST;
 	var CLASSES;
@@ -36,7 +35,8 @@ var movement = (function() {
 	 */
 	ID = {
 		INFO: 'intro-text',
-		CARPAR: 'testimonials'
+		CARPAR: 'testimonials',
+		CONTACT: 'contactForm'
 	};
 	var _helpers = {
 		/**
@@ -112,6 +112,21 @@ var movement = (function() {
 			} else {
 				el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
 			}
+		},
+		/**
+		 * [getElemDistance retrieves the distance from top of page to an element, loops up through elements parents]
+		 * @param  {[HTML]} elem [element you want to get distance from top]
+		 * @return {[int]}      [returns the distance]
+		 */
+		getElemDistance: function(elem) {
+			var location = 0;
+			if (elem.offsetParent) {
+				do {
+					location += elem.offsetTop;
+					elem = elem.offsetParent;
+				} while (elem);
+			}
+			return location >= 0 ? location : 0;
 		}
 	};
 	/**
@@ -267,10 +282,10 @@ var movement = (function() {
 			// where does the link want to go
 			var el = document.querySelector(this.getAttribute('href'));
 			// distance to top
-			var toTop = el.getBoundingClientRect().top;
-			console.log(toTop);
+			// Get an element's distance from the top of the page
+			var location = _helpers.getElemDistance(el);
 			// scroll to the element minus the height of the header
-			document.documentElement.scrollTop = document.body.scrollTop = toTop - scrollOffset;
+			document.documentElement.scrollTop = document.body.scrollTop = location - scrollOffset;
 		},
 		/**
 		 * [scrollCta fires a CTA modal based on user funnel logic]
@@ -302,6 +317,24 @@ var movement = (function() {
 			}
 			// jscs:enable
 			/* jshint ignore:end */
+		},
+		/**
+		 * [emailPage description]
+		 * @return {[type]} [description]
+		 */
+		emailPage: function() {
+			event.preventDefault();
+			var name = document.querySelector('#name').value;
+			var number = document.querySelector('#phone').value;
+			window.location = 'mailto:?body=My name is ' + name + ', my phone number is ' + number + '. Please contact me back about my free trial.';
+		},
+		/**
+		 * [emailSend description]
+		 * @return {[type]} [description]
+		 */
+		emailSend: function() {
+			var el = document.getElementById(ID.CONTACT);
+			_helpers.addEvent(el, 'submit', _private.emailPage);
 		}
 	};
 	/**
@@ -314,7 +347,8 @@ var movement = (function() {
 		getGoogleReviews: _private.getGoogleReviews,
 		changeBg: _private.changeBg,
 		smoothLink: _private.smoothLink,
-		scrollCta: _private.scrollCta
+		scrollCta: _private.scrollCta,
+		emailSend: _private.emailSend
 	};
 	return _public;
 })();
@@ -324,14 +358,17 @@ var movement = (function() {
  * TO-DO can i make this more smarter?
  */
 function init() {
-	var ctaShown = localStorage.getItem('freetrialshown');
+	// TODO convince to enable CTA check
+	// var ctaShown = localStorage.getItem('freetrialshown');
 	movement.activeNav();
 	movement.loadGoogle();
 	movement.changeBg();
 	movement.smoothLink();
-	if (!ctaShown) {
+	movement.emailSend();
+	// TODO convince to enable CTA check
+	/*if (!ctaShown) {
 		movement.scrollCta();
-	}
+	}*/
 }
 // in case the document is already rendered
 if (document.readyState !== 'loading') { init(); }
@@ -343,4 +380,3 @@ else {
 		if (document.readyState === 'complete') { init(); }
 	});
 }
-

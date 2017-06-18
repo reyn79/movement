@@ -3,6 +3,10 @@
 
 module.exports = {
 	// compile less stylesheets to css
+	options: {
+		strictImports: true,
+		syncImport: true
+	},
 	dev: {
 		files: {
 			'<%= config.dist.css %>/styles.css': ['<%= config.src.css %>/**/*.less','<%= config.src.css %>/**/*.css']

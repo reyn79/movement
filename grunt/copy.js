@@ -52,15 +52,22 @@ module.exports = {
       cwd: '<%= config.src.img %>',
       src: ['*.*'],
       dest: '<%= config.dist.img %>'
-    }, 
+    },
     // Main media
     {
       expand: true,
       cwd: '<%= config.src.media %>',
       src: ['*.*'],
       dest: '<%= config.dist.media %>'
-    }, 
+    },
     // Processed libs
+    {
+      expand: true,
+      cwd: '<%= config.src.mail %>',
+      src: ['*.*'],
+      dest: '<%= config.dist.mail %>'
+    },
+    // mail php
     {
       expand: true,
       cwd: '<%= config.src.libs.dist %>',

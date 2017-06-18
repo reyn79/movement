@@ -339,6 +339,9 @@ em {
 
 .navbar-nav {
   > li {
+  	a {
+	    line-height: 30px;
+  	}
     > .dropdown-menu {
       margin-top: 0;
       border-radius: 15px;
@@ -367,7 +370,7 @@ em {
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 0;
-    padding-top: 27px;
+    padding-top: 17px;
   }
 }
 
@@ -479,7 +482,7 @@ em {
     padding-top: 8px;
     padding-bottom: 8px;
     a {
-    	color: #999;
+      color: #999;
     }
   }
 }
@@ -498,9 +501,9 @@ em {
     margin: 0;
     text-transform: uppercase;
     text-shadow: rgba(0, 0, 0, .2) 2px 6px 5px, rgba(255, 255, 255, .4) 0 -4px 30px;
-    line-height: 64px;
+    line-height: .9em;
     padding: 5% 5px 0 5px;
-    font-size: 4.9em;
+    font-size: 4em;
   }
   .container {
     position: absolute;
@@ -907,12 +910,16 @@ input[type="color"]:focus,
 
 /***** styles *******/
 
-#styles {
-  .media-object {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    overflow: hidden;
+.styles {
+  background-color: @white-lt;
+  .intro-banner {
+    min-height: 60%;
+    background: rgb(0, 0, 0);
+    /* Fallback for older browsers without RGBA-support */
+    background: rgba(0, 0, 0, 0.3);
+  }
+  #styles {
+  	background-color: @white-lt;
   }
 }
 
