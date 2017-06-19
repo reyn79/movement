@@ -8,13 +8,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the site and how to install them
+You need to have these installed. A working knowledge on what they are and how to use them will help.
 
-```
-node
-bower
-grunt
-```
+* [Node](https://nodejs.org/en/) - Javascript runtime
+* [Bower](https://bower.io/) - Package manager
+* [Grunt](https://gruntjs.com/) - Task runner
 
 ### Installing
 
@@ -58,4 +56,4 @@ Take assets from the dist folder and FTP into web server to deploy
 
 ## Authors
 
-* **Reynold Ismail** - *Initial work* - [reyn79](https://github.com/reyn79)
+* **Reynold Ismail** - *Lead dev* - [reyn79](https://github.com/reyn79)
