@@ -22,6 +22,7 @@ maven-eclipse.xml
 *.rej
 .DS_Store
 *.sublime-workspace
+*.sublime-grunt.cache
 
 # Ignore binary folders
 *.orig
