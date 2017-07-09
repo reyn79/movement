@@ -59,7 +59,9 @@ var movement = (function() {
 		addEvent: function(el, type, handler) {
 			if (el.attachEvent) {
 				// IE9 fix
-				var proxy = function() { handler.call(el); };
+				var proxy = function() {
+					handler.call(el);
+				};
 				el.attachEvent('on' + type, proxy);
 			} else {
 				el.addEventListener(type, handler);
@@ -86,7 +88,9 @@ var movement = (function() {
 		 * @return {Boolean}           [return true or false]
 		 */
 		hasClass: function(el, className) {
-			return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className);
+			return el.classList
+				? el.classList.contains(className)
+				: new RegExp('\\b' + className + '\\b').test(el.className);
 		},
 		/**
 		 * [addClass adds a class to an element]
@@ -110,7 +114,10 @@ var movement = (function() {
 			if (el.classList) {
 				el.classList.remove(className);
 			} else {
-				el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
+				el.className = el.className.replace(
+					new RegExp('\\b' + className + '\\b', 'g'),
+					''
+				);
 			}
 		},
 		/**
@@ -154,7 +161,12 @@ var movement = (function() {
 		 */
 		loadGoogle: function() {
 			var scr = document.createElement('script');
-			scr.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=' + CONST.gak + '&libraries=places&callback=movement.getGoogleReviews');
+			scr.setAttribute(
+				'src',
+				'https://maps.googleapis.com/maps/api/js?key=' +
+					CONST.gak +
+					'&libraries=places&callback=movement.getGoogleReviews'
+			);
 			document.body.appendChild(scr);
 		},
 		/**
@@ -236,7 +248,8 @@ var movement = (function() {
 			// grab the carousel element
 			var myCarousel = document.getElementById('test-car');
 			// initialize with some options
-			var myCarouselInit = new Carousel(myCarousel, { // these options values will override the ones set via DATA API
+			var myCarouselInit = new Carousel(myCarousel, {
+				// these options values will override the ones set via DATA API
 				interval: false,
 				pause: false,
 				keyboard: false,
@@ -250,7 +263,8 @@ var movement = (function() {
 		 * @return {[void]}
 		 */
 		changeBg: function() {
-			var bg = CONST.bgArray[Math.floor(Math.random() * CONST.bgArray.length)];
+			var bg =
+				CONST.bgArray[Math.floor(Math.random() * CONST.bgArray.length)];
 			var imageUrl = 'url(' + CONST.imgPath + bg + ')';
 			var body = document.querySelector('body');
 			_helpers.css(body, { 'background-image': imageUrl });
@@ -261,11 +275,17 @@ var movement = (function() {
 		 */
 		smoothLink: function() {
 			//Get smooth links
-			var smoothLinks = document.getElementsByClassName(CLASSES.SMOOTHLINK);
+			var smoothLinks = document.getElementsByClassName(
+				CLASSES.SMOOTHLINK
+			);
 			// attach smoothscroll to it
 			for (var i = smoothLinks.length - 1; i >= 0; i--) {
 				// console.log(smoothLinks[i].getAttribute('href'));
-				_helpers.addEvent(smoothLinks[i], 'click', _private.smoothScroll);
+				_helpers.addEvent(
+					smoothLinks[i],
+					'click',
+					_private.smoothScroll
+				);
 			}
 		},
 		/**
@@ -285,7 +305,8 @@ var movement = (function() {
 			// Get an element's distance from the top of the page
 			var location = _helpers.getElemDistance(el);
 			// scroll to the element minus the height of the header
-			document.documentElement.scrollTop = document.body.scrollTop = location - scrollOffset;
+			document.documentElement.scrollTop = document.body.scrollTop =
+				location - scrollOffset;
 		},
 		/**
 		 * [scrollCta fires a CTA modal based on user funnel logic]
@@ -326,7 +347,12 @@ var movement = (function() {
 			event.preventDefault();
 			var name = document.querySelector('#name').value;
 			var number = document.querySelector('#phone').value;
-			window.location = 'mailto:?body=My name is ' + name + ', my phone number is ' + number + '. Please contact me back about my free trial.';
+			window.location =
+				'mailto:?body=My name is ' +
+				name +
+				', my phone number is ' +
+				number +
+				'. Please contact me back about my free trial.';
 		},
 		/**
 		 * [emailSend description]
@@ -371,12 +397,16 @@ function init() {
 	}*/
 }
 // in case the document is already rendered
-if (document.readyState !== 'loading') { init(); }
-// modern browsers
-else if (document.addEventListener) { document.addEventListener('DOMContentLoaded', init); }
-// IE <= 8
-else {
+if (document.readyState !== 'loading') {
+	init();
+} else if (document.addEventListener) {
+	// modern browsers
+	document.addEventListener('DOMContentLoaded', init);
+} else {
+	// IE <= 8
 	document.attachEvent('onreadystatechange', function() {
-		if (document.readyState === 'complete') { init(); }
+		if (document.readyState === 'complete') {
+			init();
+		}
 	});
 }
