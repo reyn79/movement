@@ -9,12 +9,13 @@ module.exports = {
 	},
 	dev: {
 		files: {
-			'<%= config.dist.css %>/styles.css': ['<%= config.src.css %>/**/*.less','<%= config.src.css %>/**/*.css']
+			'<%= config.dist.css %>/styles.css': '<%= config.src.css %>/movement.less'
 		}
 	},
 	prod: {
 		files: {
-			'<%= config.src.base %>/temp/styles.css': ['<%= config.src.css %>/**/*.less','<%= config.src.css %>/**/*.css']
+			'<%= config.src.base %>/temp/styles.css': '<%= config.src.css %>/movement.less'
+			
 		}
 	},
 	bootstrap: {

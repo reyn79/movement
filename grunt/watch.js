@@ -8,7 +8,7 @@ module.exports = {
   },
   css: {
     files: ['<%= config.src.css %>/*.less', '<%= config.src.css %>/*.css'],
-    tasks: ['less'],
+    tasks: ['less:dev'],
   },
   js: {
     files: ['<%= config.src.js %>/*.js','!<%= config.src.js %>/*.tmpl.js'],
