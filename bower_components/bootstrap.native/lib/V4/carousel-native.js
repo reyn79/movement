@@ -41,7 +41,7 @@ var Carousel = function( element, options ) {
     leftArrow = getElementsByClassName(element,component+'-control-prev')[0], 
     rightArrow = getElementsByClassName(element,component+'-control-next')[0],
     indicator = queryElement( '.'+component+'-indicators', element ),
-    indicators = indicator[getElementsByTagName]( "LI" );
+    indicators = indicator && indicator[getElementsByTagName]( "LI" ) || [];
 
   // handlers
   var pauseHandler = function () {
@@ -152,13 +152,7 @@ var Carousel = function( element, options ) {
     clearInterval(timer);
     setActivePage( next );
 
-    if ( supportTransitions && hasClass(element,'slide') 
-      && ( // we now check if the media queries do actually filter out BS4 transitions
-        globalObject.getComputedStyle(slides[next])[Transition[toLowerCase]()] 
-          || globalObject.getComputedStyle(slides[next])[Webkit[toLowerCase]() + Transition]
-          || globalObject.getComputedStyle(slides[next])[Webkit + Transition + 'Duration'] // old Safari stuff
-      )
-    ) {
+    if ( supportTransitions && hasClass(element,'slide') ) {
 
       addClass(slides[next],carouselItem +'-'+ orientation);
       slides[next][offsetWidth];
@@ -167,6 +161,7 @@ var Carousel = function( element, options ) {
 
       one(slides[activeItem], transitionEndEvent, function(e) {
         var timeout = e[target] !== slides[activeItem] ? e.elapsedTime*1000 : 0;
+        
         setTimeout(function(){
           isSliding = false;
 
@@ -182,7 +177,7 @@ var Carousel = function( element, options ) {
           if ( !document.hidden && self[interval] && !hasClass(element,paused) ) {
             self.cycle();
           }
-        },timeout);
+        },timeout+100);
       });
 
     } else {

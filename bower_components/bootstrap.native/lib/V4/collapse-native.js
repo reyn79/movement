@@ -31,15 +31,13 @@ var Collapse = function( element, options ) {
       setTimeout(function() {
         collapseElement[style][height] = getMaxHeight(collapseElement) + 'px';
 
-        (function(){
-          emulateTransitionEnd(collapseElement, function(){
-            isAnimating = false;
-            collapseElement[setAttribute](ariaExpanded,'true');
-            removeClass(collapseElement,collapsing);
-            collapseElement[style][height] = '';
-            bootstrapCustomEvent.call(collapseElement, shownEvent, component);
-          });
-        }());
+        emulateTransitionEnd(collapseElement, function(){
+          isAnimating = false;
+          collapseElement[setAttribute](ariaExpanded,'true');
+          removeClass(collapseElement,collapsing);
+          collapseElement[style][height] = '';
+          bootstrapCustomEvent.call(collapseElement, shownEvent, component);
+        });
       }, 20);
     },
     closeAction = function(collapseElement) {
@@ -50,16 +48,14 @@ var Collapse = function( element, options ) {
         addClass(collapseElement,collapsing);
         collapseElement[style][height] = '0px';
 
-        (function() {
-          emulateTransitionEnd(collapseElement, function(){
-            isAnimating = false;
-            collapseElement[setAttribute](ariaExpanded,'false');
-            removeClass(collapseElement,collapsing);
-            removeClass(collapseElement,showClass);
-            collapseElement[style][height] = '';
-            bootstrapCustomEvent.call(collapseElement, hiddenEvent, component);
-          });
-        }());
+        emulateTransitionEnd(collapseElement, function(){
+          isAnimating = false;
+          collapseElement[setAttribute](ariaExpanded,'false');
+          removeClass(collapseElement,collapsing);
+          removeClass(collapseElement,showClass);
+          collapseElement[style][height] = '';
+          bootstrapCustomEvent.call(collapseElement, hiddenEvent, component);
+        });
       },20);
     },
     getTarget = function() {
@@ -85,9 +81,16 @@ var Collapse = function( element, options ) {
     removeClass(element,collapsed);
 
     if ( accordion !== null ) {
-      var activeCollapses = getElementsByClassName(accordion,component+' '+showClass);
+      var activeCollapses = getElementsByClassName(accordion,component+' '+showClass),
+          allToggles = accordion.querySelectorAll('['+dataToggle+'="'+component+'"]'),
+          correspondingCollapse;
       for (var i=0, al=activeCollapses[length]; i<al; i++) {
-        if ( activeCollapses[i] !== collapse) closeAction(activeCollapses[i]);
+        if ( activeCollapses[i] !== collapse ) { closeAction(activeCollapses[i]); }
+      }
+      for (var u=0, atl=allToggles[length]; u<atl; u++) {
+        correspondingCollapse = allToggles[u][getAttribute](dataTarget) || allToggles[u].href;
+        if ( correspondingCollapse.split('#')[1] !== collapse.id ) { addClass(allToggles[u],collapsed); } 
+        else { removeClass(allToggles[u],collapsed); }
       }
     }
   };

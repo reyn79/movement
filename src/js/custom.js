@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /**
  * movement object with exposed functionality
  * @param  {Object}
@@ -16,27 +16,35 @@ var movement = (function() {
 	 * @type {Object}
 	 */
 	CONST = {
-		gak: 'AIzaSyAerv0HM1ZRtnN1hqRHb545CVYhGRGNd_w',
-		bgArray: ['bg-home.jpg', 'kickbox-girl.jpg'],
-		imgPath: 'img/'
+		gak: "AIzaSyAerv0HM1ZRtnN1hqRHb545CVYhGRGNd_w",
+		bgArray: ["bg-home.jpg", "kickbox-girl.jpg"],
+		stylesBjj: [
+			"http://lorempixel.com/500/250/",
+			"http://lorempixel.com/500/250/",
+			"http://lorempixel.com/500/250/"
+		],
+		imgPath: "img/",
+		testCar: "src/html/inc/car-item.hbs"
 	};
 	/**
 	 * [CLASSES holds classe reference for DOM elements]
 	 * @type {Object}
 	 */
 	CLASSES = {
-		NAVITEM: 'js-nav-item',
-		SMOOTHLINK: 'js-smooth-link',
-		CAROUSEL: 'carousel-inner'
+		NAVITEM: "js-nav-item",
+		SMOOTHLINK: "js-smooth-link",
+		CAROUSEL: "carousel-inner",
+		INTRO: "intro-banner"
 	};
 	/**
 	 * [ID holds ID references for DOM elements]
 	 * @type {Object}
 	 */
 	ID = {
-		INFO: 'intro-text',
-		CARPAR: 'testimonials',
-		CONTACT: 'contactForm'
+		INFO: "intro-text",
+		TESTCARCONT: "testimonials",
+		TESTCARPAR: "test-car",
+		CONTACT: "contactForm"
 	};
 	var _helpers = {
 		/**
@@ -62,7 +70,7 @@ var movement = (function() {
 				var proxy = function() {
 					handler.call(el);
 				};
-				el.attachEvent('on' + type, proxy);
+				el.attachEvent("on" + type, proxy);
 			} else {
 				el.addEventListener(type, handler);
 			}
@@ -76,7 +84,7 @@ var movement = (function() {
 		 */
 		removeEvent: function(el, type, handler) {
 			if (el.detachEvent) {
-				el.detachEvent('on' + type, handler);
+				el.detachEvent("on" + type, handler);
 			} else {
 				el.removeEventListener(type, handler);
 			}
@@ -90,7 +98,7 @@ var movement = (function() {
 		hasClass: function(el, className) {
 			return el.classList
 				? el.classList.contains(className)
-				: new RegExp('\\b' + className + '\\b').test(el.className);
+				: new RegExp("\\b" + className + "\\b").test(el.className);
 		},
 		/**
 		 * [addClass adds a class to an element]
@@ -101,7 +109,7 @@ var movement = (function() {
 			if (el.classList) {
 				el.classList.add(className);
 			} else if (!_helpers.hasClass(el, className)) {
-				el.className += ' ' + className;
+				el.className += " " + className;
 			}
 		},
 		/**
@@ -115,8 +123,8 @@ var movement = (function() {
 				el.classList.remove(className);
 			} else {
 				el.className = el.className.replace(
-					new RegExp('\\b' + className + '\\b', 'g'),
-					''
+					new RegExp("\\b" + className + "\\b", "g"),
+					""
 				);
 			}
 		},
@@ -146,12 +154,12 @@ var movement = (function() {
 		 * @return {[void]} [manipulates DOM]
 		 */
 		activeNav: function() {
-			var body = document.querySelector('body');
-			var bodyClass = body.getAttribute('class');
+			var body = document.querySelector("body");
+			var bodyClass = body.getAttribute("class");
 			var nav = document.getElementsByClassName(CLASSES.NAVITEM);
 			for (var i = nav.length - 1; i >= 0; i--) {
 				if (_helpers.hasClass(nav[i], bodyClass)) {
-					_helpers.addClass(nav[i], 'active');
+					_helpers.addClass(nav[i], "active");
 				}
 			}
 		},
@@ -160,12 +168,12 @@ var movement = (function() {
 		 * @return {[void]} [manipulates DOM]
 		 */
 		loadGoogle: function() {
-			var scr = document.createElement('script');
+			var scr = document.createElement("script");
 			scr.setAttribute(
-				'src',
-				'https://maps.googleapis.com/maps/api/js?key=' +
+				"src",
+				"https://maps.googleapis.com/maps/api/js?key=" +
 					CONST.gak +
-					'&libraries=places&callback=movement.getGoogleReviews'
+					"&libraries=places&callback=movement.getGoogleReviews"
 			);
 			document.body.appendChild(scr);
 		},
@@ -176,35 +184,40 @@ var movement = (function() {
 		getGoogleReviews: function() {
 			/* jshint ignore:start */
 			// jscs:disable
-			// create map element
-			// -33.783817, 151.128672
-			var movementhq = { lat: -33.783817, lng: 151.128672 };
-			// search on maps right click "whats here?"
-			var map = new google.maps.Map(document.getElementById('map'), {
-				scrollwheel: false,
-				center: movementhq,
-				zoom: 15
-			});
-			// create custom marker
-			var marker = new google.maps.Marker({
-				position: movementhq,
-				map: map,
-				icon: 'img/logo-pin.png'
-			});
-			// Fire only if testimonial carousel exists
-			var testimonial = document.getElementById('testimonials');
-			if (testimonial) {
-				// request with place ID
-				// https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
-				var request = {
-					placeId: 'ChIJjdA5ZQimEmsRXJRgJr7gvDI'
-				};
-				// create place service call to get details
-				// https://developers.google.com/maps/documentation/javascript/places#place_details
-				var service = new google.maps.places.PlacesService(map);
-				service.getDetails(request, callback);
-				// place object has all data
-				// TO-DO: store somewhere? whats the logic?
+
+			// Does map exist?
+			var theMap = document.getElementById("map");
+			if (theMap) {
+				// create map element
+				// -33.783817, 151.128672
+				var movementhq = { lat: -33.783817, lng: 151.128672 };
+				// search on maps right click "whats here?"
+				var map = new google.maps.Map(theMap, {
+					scrollwheel: false,
+					center: movementhq,
+					zoom: 15
+				});
+				// create custom marker
+				var marker = new google.maps.Marker({
+					position: movementhq,
+					map: map,
+					icon: "img/logo-pin.png"
+				});
+				// Fire only if testimonial carousel exists
+				var testimonial = document.getElementById("testimonials");
+				if (testimonial) {
+					// request with place ID
+					// https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+					var request = {
+						placeId: "ChIJjdA5ZQimEmsRXJRgJr7gvDI"
+					};
+					// create place service call to get details
+					// https://developers.google.com/maps/documentation/javascript/places#place_details
+					var service = new google.maps.places.PlacesService(map);
+					service.getDetails(request, callback);
+					// place object has all data
+					// TO-DO: store somewhere? whats the logic?
+				}
 			}
 			/**
 			 * [callback what to call when google place details has been retrieved]
@@ -214,7 +227,13 @@ var movement = (function() {
 			 */
 			function callback(place, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					_private.fillCarousel(place.reviews);
+					_private.fillCarousel(
+						place.reviews,
+						ID.TESTCARCONT,
+						ID.TESTCARPAR,
+						CLASSES.CAROUSEL,
+						CONST.testCar
+					);
 				}
 			}
 			// jscs:enable
@@ -223,30 +242,36 @@ var movement = (function() {
 		/**
 		 * [fillCarousel construct the carousel]
 		 * @param  {[array]} arr [array of objects returned from whatever call]
+		 * @param  {[string]} con [container ID - hidden by default]
+		 * @param  {[string]} car [carousel class]
+		 * @param  {[string]} temp [template string]
 		 * @return {[void]}     [initialises carousel on success]
+		 * TOFIX over engineered lol
 		 */
-		fillCarousel: function(arr) {
+		fillCarousel: function(arr, con, par, car, temp) {
 			// carousel parent
-			var carPar = document.getElementById(ID.CARPAR);
+			var carPar = document.getElementById(con);
 			// carousel
-			var cars = document.getElementsByClassName(CLASSES.CAROUSEL);
+			var cars = document.getElementsByClassName(car);
 			// pre compiled handlebars template reference
-			var postTemplate = movement.templates['src/html/inc/car-item.hbs'];
+			var postTemplate = movement.templates[temp];
 			var html = postTemplate(arr);
 			cars[0].innerHTML = html;
-			carPar.style.display = 'block';
+			if (carPar) {
+				carPar.style.display = "block";
+			}
 			// initialise carousel once the html has been set up
-			_private.initCarousel();
+			_private.initCarousel(par);
 		},
 		/**
 		 * [initCarousel initialises the carousel]
 		 * @return {[void]} [manipulates DOM]
 		 */
-		initCarousel: function() {
+		initCarousel: function(par) {
 			/* jshint ignore:start */
 			// jscs:disable
 			// grab the carousel element
-			var myCarousel = document.getElementById('test-car');
+			var myCarousel = document.getElementById(par);
 			// initialize with some options
 			var myCarouselInit = new Carousel(myCarousel, {
 				// these options values will override the ones set via DATA API
@@ -265,9 +290,11 @@ var movement = (function() {
 		changeBg: function() {
 			var bg =
 				CONST.bgArray[Math.floor(Math.random() * CONST.bgArray.length)];
-			var imageUrl = 'url(' + CONST.imgPath + bg + ')';
-			var body = document.querySelector('body');
-			_helpers.css(body, { 'background-image': imageUrl });
+			var imageUrl = "url(" + CONST.imgPath + bg + ")";
+			var el = document.getElementsByClassName(CLASSES.INTRO);
+			for (var i = el.length - 1; i >= 0; i--) {
+				_helpers.css(el[i], { "background-image": imageUrl });
+			}
 		},
 		/**
 		 * [smoothLink finds all elements with smoothlink class and attaches an event]
@@ -283,7 +310,7 @@ var movement = (function() {
 				// console.log(smoothLinks[i].getAttribute('href'));
 				_helpers.addEvent(
 					smoothLinks[i],
-					'click',
+					"click",
 					_private.smoothScroll
 				);
 			}
@@ -297,10 +324,10 @@ var movement = (function() {
 			// scroll into view
 			event.preventDefault();
 			// get header height
-			var headerEl = document.querySelectorAll('header');
+			var headerEl = document.querySelectorAll("header");
 			var scrollOffset = headerEl[0].offsetHeight;
 			// where does the link want to go
-			var el = document.querySelector(this.getAttribute('href'));
+			var el = document.querySelector(this.getAttribute("href"));
 			// distance to top
 			// Get an element's distance from the top of the page
 			var location = _helpers.getElemDistance(el);
@@ -320,20 +347,20 @@ var movement = (function() {
 			var scrollEl = document.getElementById(ID.INFO);
 			var scrollElTop = scrollEl.offsetTop - 55;
 			// add callback to scroll event on window
-			_helpers.addEvent(el, 'scroll', callback);
+			_helpers.addEvent(el, "scroll", callback);
 
 			function callback() {
 				if (window.pageYOffset > scrollElTop) {
 					// console.log('scrolling baby');
 					// get the modal by ID
-					var trialModal = document.getElementById('freetrial');
+					var trialModal = document.getElementById("freetrial");
 					// initialize and show the modal right away
 					var myModalInstance = new Modal(trialModal);
 					myModalInstance.show();
 					// When shown record this in localstorage
-					localStorage.setItem('freetrialshown', true);
+					localStorage.setItem("freetrialshown", true);
 					// remove the event from window
-					_helpers.removeEvent(el, 'scroll', callback);
+					_helpers.removeEvent(el, "scroll", callback);
 				}
 			}
 			// jscs:enable
@@ -345,14 +372,14 @@ var movement = (function() {
 		 */
 		emailPage: function() {
 			event.preventDefault();
-			var name = document.querySelector('#name').value;
-			var number = document.querySelector('#phone').value;
+			var name = document.querySelector("#name").value;
+			var number = document.querySelector("#phone").value;
 			window.location =
-				'mailto:?body=My name is ' +
+				"mailto:?body=My name is " +
 				name +
-				', my phone number is ' +
+				", my phone number is " +
 				number +
-				'. Please contact me back about my free trial.';
+				". Please contact me back about my free trial.";
 		},
 		/**
 		 * [emailSend description]
@@ -360,7 +387,7 @@ var movement = (function() {
 		 */
 		emailSend: function() {
 			var el = document.getElementById(ID.CONTACT);
-			_helpers.addEvent(el, 'submit', _private.emailPage);
+			_helpers.addEvent(el, "submit", _private.emailPage);
 		}
 	};
 	/**
@@ -397,15 +424,15 @@ function init() {
 	}*/
 }
 // in case the document is already rendered
-if (document.readyState !== 'loading') {
+if (document.readyState !== "loading") {
 	init();
 } else if (document.addEventListener) {
 	// modern browsers
-	document.addEventListener('DOMContentLoaded', init);
+	document.addEventListener("DOMContentLoaded", init);
 } else {
 	// IE <= 8
-	document.attachEvent('onreadystatechange', function() {
-		if (document.readyState === 'complete') {
+	document.attachEvent("onreadystatechange", function() {
+		if (document.readyState === "complete") {
 			init();
 		}
 	});

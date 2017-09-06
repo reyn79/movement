@@ -10,8 +10,8 @@ var Tooltip = function( element,options ) {
   element = queryElement(element);
 
   // DATA API
-  var animationData = element[getAttribute](dataAnimation);
-      placementData = element[getAttribute](dataPlacement);
+  var animationData = element[getAttribute](dataAnimation),
+      placementData = element[getAttribute](dataPlacement),
       delayData = element[getAttribute](dataDelay),
       containerData = element[getAttribute](dataContainer),
       
@@ -26,8 +26,8 @@ var Tooltip = function( element,options ) {
       modal = getClosest(element,'.modal'),
       
       // maybe the element is inside a fixed navbar
-      navbarFixedTop = getClosest(element,fixedTop),
-      navbarFixedBottom = getClosest(element,fixedBottom);
+      navbarFixedTop = getClosest(element,'.'+fixedTop),
+      navbarFixedBottom = getClosest(element,'.'+fixedBottom);
 
   // set options
   options = options || {};
@@ -55,6 +55,11 @@ var Tooltip = function( element,options ) {
       titleString = element[getAttribute](title) || element[getAttribute](dataOriginalTitle); // read the title again
       tooltip = document.createElement(div);
       tooltip[setAttribute]('role',component);
+
+      // tooltip arrow
+      var tooltipArrow = document.createElement(div);
+      tooltipArrow[setAttribute](classString,'arrow');
+      tooltip.appendChild(tooltipArrow);
   
       var tooltipInner = document.createElement(div);
       tooltipInner[setAttribute](classString,component+'-inner');
@@ -62,7 +67,7 @@ var Tooltip = function( element,options ) {
       tooltipInner.innerHTML = titleString;
 
       self[container].appendChild(tooltip);
-      tooltip[setAttribute](classString, component + ' ' + component+'-'+placementSetting + ' ' + self[animation]);
+      tooltip[setAttribute](classString, component + ' bs-' + component+'-'+placementSetting + ' ' + self[animation]);
     },
     updateTooltip = function () {
       styleTip(element,tooltip,placementSetting,self[container]);
@@ -73,6 +78,14 @@ var Tooltip = function( element,options ) {
     },
     showTooltip = function () {
       !hasClass(tooltip,showClass) && ( addClass(tooltip,showClass) );
+    },
+    // triggers
+    showTrigger = function() {
+      bootstrapCustomEvent.call(element, shownEvent, component);
+    },
+    hideTrigger = function() {
+      removeToolTip();
+      bootstrapCustomEvent.call(element, hiddenEvent, component);
     };
 
   // public methods
@@ -85,9 +98,7 @@ var Tooltip = function( element,options ) {
         updateTooltip();
         showTooltip();
         bootstrapCustomEvent.call(element, showEvent, component);
-        emulateTransitionEnd(tooltip, function() {
-          bootstrapCustomEvent.call(element, shownEvent, component);
-        });
+        !!self[animation] ? emulateTransitionEnd(tooltip, showTrigger) : showTrigger();
       }
     }, 20 );
   };
@@ -97,10 +108,7 @@ var Tooltip = function( element,options ) {
       if (tooltip && tooltip !== null && hasClass(tooltip,showClass)) {
         bootstrapCustomEvent.call(element, hideEvent, component);
         removeClass(tooltip,showClass);
-        emulateTransitionEnd(tooltip, function() {
-          removeToolTip();
-          bootstrapCustomEvent.call(element, hiddenEvent, component);
-        });
+        !!self[animation] ? emulateTransitionEnd(tooltip, hideTrigger) : hideTrigger();
       }
     }, self[delay]);
   };

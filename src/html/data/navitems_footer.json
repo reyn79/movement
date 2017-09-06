@@ -1,0 +1,24 @@
+{
+  "navitem": [
+    {
+      "key": "Timetable",
+      "data": "timetable.html",
+      "class": "timetable"
+    },
+    {
+      "key": "Styles",
+      "data": "styles.html",
+      "class": "styles"
+    },
+    {
+      "key": "About",
+      "data": "about.html",
+      "class": "about"
+    },
+    {
+      "key": "Meet the team",
+      "data": "about.html",
+      "class": "about"
+    }
+  ]
+}

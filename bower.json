@@ -11,6 +11,7 @@
     "jquery": "^3.1.1",
     "bootstrap": "^3.3.7",
     "handlebars": "^4.0.5",
-    "bootstrap.native": "^2.0.6"
+    "bootstrap.native": "^2.0.6",
+    "components-font-awesome": "^4.7.0"
   }
 }

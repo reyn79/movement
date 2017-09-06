@@ -35,8 +35,8 @@ var Popover = function( element, options ) {
       modal = getClosest(element,'.modal'),
       
       // maybe the element is inside a fixed navbar
-      navbarFixedTop = getClosest(element,fixedTop),
-      navbarFixedBottom = getClosest(element,fixedBottom);
+      navbarFixedTop = getClosest(element,'.'+fixedTop),
+      navbarFixedBottom = getClosest(element,'.'+fixedBottom);
 
   // set options
   options = options || {};
@@ -119,6 +119,15 @@ var Popover = function( element, options ) {
         placementSetting = updatePlacement(placementSetting); 
         styleTip(element,popover,placementSetting,self[container]); 
       }
+    },
+    
+    // triggers
+    showTrigger = function() {
+      bootstrapCustomEvent.call(element, shownEvent, component);
+    },
+    hideTrigger = function() {
+      removePopover();
+      bootstrapCustomEvent.call(element, hiddenEvent, component);
     };
 
   // public methods / handlers
@@ -135,9 +144,7 @@ var Popover = function( element, options ) {
         updatePopover();
         showPopover();
         bootstrapCustomEvent.call(element, showEvent, component);
-        emulateTransitionEnd(popover, function() {
-          bootstrapCustomEvent.call(element, shownEvent, component);
-        });
+        !!self[animation] ? emulateTransitionEnd(popover, showTrigger) : showTrigger();
       }
     }, 20 );
   };
@@ -147,10 +154,7 @@ var Popover = function( element, options ) {
       if (popover && popover !== null && hasClass(popover,inClass)) {
         bootstrapCustomEvent.call(element, hideEvent, component);
         removeClass(popover,inClass);
-        emulateTransitionEnd(popover, function() {
-          removePopover();
-          bootstrapCustomEvent.call(element, hiddenEvent, component);
-        });
+        !!self[animation] ? emulateTransitionEnd(popover, hideTrigger) : hideTrigger();
       }
     }, self[delay] );
   };

@@ -18,21 +18,21 @@ var Dropdown = function( element, option ) {
     component = 'dropdown', open = 'open',
     relatedTarget = null,
     menu = queryElement('.dropdown-menu', parent),
-    children = nodeListToArray( menu[getElementsByTagName]('*')),
+    children = menu[getElementsByTagName]('*'),
 
     // handlers
     keyHandler = function(e) {
       if (isOpen && (e.which == 27 || e.keyCode == 27)) { relatedTarget = null; hide(); } // e.keyCode for IE8
     },
     clickHandler = function(e) {
-      var eventTarget = e[target], hasData;
-      hasData = ( eventTarget.nodeType !== 1 && (eventTarget[getAttribute](dataToggle) || eventTarget[parentNode][getAttribute](dataToggle)) );
+      var eventTarget = e[target],
+        hasData = eventTarget && (eventTarget[getAttribute](dataToggle) || eventTarget[parentNode] && getAttribute in eventTarget[parentNode] && eventTarget[parentNode][getAttribute](dataToggle));
       if ( eventTarget === element || eventTarget === parent || eventTarget[parentNode] === element ) {
         e.preventDefault(); // comment this line to stop preventing navigation when click target is a link 
         relatedTarget = element;
         self.toggle();
       } else if ( isOpen ) {
-        if ( (eventTarget === menu || children && children[indexOf](eventTarget) > -1) && ( self.persist || hasData ) ) {
+        if ( eventTarget === menu || children && nodeListToArray(children)[indexOf](eventTarget) > -1 && (self.persist || hasData) ) {
           return;
         } else { relatedTarget = null; hide(); }
       }

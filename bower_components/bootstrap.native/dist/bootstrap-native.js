@@ -1,4 +1,4 @@
-// Native Javascript for Bootstrap 3 v2.0.6 | © dnp_theme | MIT-License
+// Native Javascript for Bootstrap 3 v2.0.13 | © dnp_theme | MIT-License
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD support:
@@ -134,8 +134,8 @@
     isIE8 = !('opacity' in body[style]),
   
     // tooltip / popover
-    fixedTop = '.navbar-fixed-top',
-    fixedBottom = '.navbar-fixed-bottom',  
+    fixedTop = 'navbar-fixed-top',
+    fixedBottom = 'navbar-fixed-bottom',  
     mouseHover = ('onmouseleave' in document) ? [ 'mouseenter', 'mouseleave'] : [ 'mouseover', 'mouseout' ],
     tipPositions = /\b(top|bottom|left|top)+/,
   
@@ -425,6 +425,7 @@
     // bind, target alert, duration and stuff
     var self = this, component = 'alert',
       alert = getClosest(element,'.'+component),
+      triggerHandler = function(){ hasClass(alert,'fade') ? emulateTransitionEnd(alert,transitionEndHandler) : transitionEndHandler(); },
       // handlers
       clickHandler = function(e){
         var eventTarget = e[target];
@@ -446,7 +447,7 @@
       if ( alert && element && hasClass(alert,inClass) ) {
         bootstrapCustomEvent.call(alert, closeEvent, component);
         removeClass(alert,inClass);
-        (function(){ alert && emulateTransitionEnd(alert,transitionEndHandler);}())
+        alert && triggerHandler();
       }
     };
   
@@ -622,7 +623,7 @@
       controls = getElementsByClassName(element,component+'-control'),
       leftArrow = controls[0], rightArrow = controls[1],
       indicator = queryElement( '.'+component+'-indicators', element ),
-      indicators = indicator[getElementsByTagName]( "LI" );
+      indicators = indicator && indicator[getElementsByTagName]( "LI" ) || [];
   
     // handlers
     var pauseHandler = function () {
@@ -757,7 +758,7 @@
             if ( self[interval] && !hasClass(element,paused) ) {
               self.cycle();
             }
-          },timeout);
+          },timeout+100);
         });
   
       } else {
@@ -823,7 +824,7 @@
   
   
     // event targets and constants
-    var accordion = null, collapse = null, self = this, 
+    var accordion = null, collapse = null, self = this,
       isAnimating = false, // when true it will prevent click handlers
       accordionData = element[getAttribute]('data-parent'),
   
@@ -840,15 +841,13 @@
         setTimeout(function() {
           collapseElement[style][height] = getMaxHeight(collapseElement) + 'px';
   
-          (function(){
-            emulateTransitionEnd(collapseElement, function() {
-              isAnimating = false;
-              collapseElement[setAttribute](ariaExpanded,'true');
-              removeClass(collapseElement,collapsing);
-              collapseElement[style][height] = '';
-              bootstrapCustomEvent.call(collapseElement, shownEvent, component);
-            });
-          }());
+          emulateTransitionEnd(collapseElement, function() {
+            isAnimating = false;
+            collapseElement[setAttribute](ariaExpanded,'true');
+            removeClass(collapseElement,collapsing);
+            collapseElement[style][height] = '';
+            bootstrapCustomEvent.call(collapseElement, shownEvent, component);
+          });
         },20);
       },
       closeAction = function(collapseElement) {
@@ -859,16 +858,14 @@
           addClass(collapseElement,collapsing);
           collapseElement[style][height] = '0px';
   
-          (function(){
-            emulateTransitionEnd(collapseElement, function() {
-              isAnimating = false;
-              collapseElement[setAttribute](ariaExpanded,'false');
-              removeClass(collapseElement,collapsing);
-              removeClass(collapseElement,inClass);
-              collapseElement[style][height] = '';
-              bootstrapCustomEvent.call(collapseElement, hiddenEvent, component);
-            });
-          }());
+          emulateTransitionEnd(collapseElement, function() {
+            isAnimating = false;
+            collapseElement[setAttribute](ariaExpanded,'false');
+            removeClass(collapseElement,collapsing);
+            removeClass(collapseElement,inClass);
+            collapseElement[style][height] = '';
+            bootstrapCustomEvent.call(collapseElement, hiddenEvent, component);
+          });
         },20);
       },
       getTarget = function() {
@@ -894,9 +891,16 @@
       removeClass(element,collapsed);
   
       if ( accordion !== null ) {
-        var activeCollapses = getElementsByClassName(accordion,component+' '+inClass);
+        var activeCollapses = getElementsByClassName(accordion,component+' '+inClass),
+            allToggles = accordion[querySelectorAll]('['+dataToggle+'="'+component+'"]'),
+            correspondingCollapse;
         for (var i=0, al=activeCollapses[length]; i<al; i++) {
-          if ( activeCollapses[i] !== collapse) closeAction(activeCollapses[i]);
+          if ( activeCollapses[i] !== collapse ) { closeAction(activeCollapses[i]); }
+        }
+        for (var u=0, atl=allToggles[length]; u<atl; u++) {
+          correspondingCollapse = allToggles[u][getAttribute](dataTarget) || allToggles[u].href;
+          if ( correspondingCollapse.split('#')[1] !== collapse.id ) { addClass(allToggles[u],collapsed); } 
+          else { removeClass(allToggles[u],collapsed); }
         }
       }
     };
@@ -934,21 +938,21 @@
       component = 'dropdown', open = 'open',
       relatedTarget = null,
       menu = queryElement('.dropdown-menu', parent),
-      children = nodeListToArray( menu[getElementsByTagName]('*')),
+      children = menu[getElementsByTagName]('*'),
   
       // handlers
       keyHandler = function(e) {
         if (isOpen && (e.which == 27 || e.keyCode == 27)) { relatedTarget = null; hide(); } // e.keyCode for IE8
       },
       clickHandler = function(e) {
-        var eventTarget = e[target], hasData;
-        hasData = ( eventTarget.nodeType !== 1 && (eventTarget[getAttribute](dataToggle) || eventTarget[parentNode][getAttribute](dataToggle)) );
+        var eventTarget = e[target],
+          hasData = eventTarget && (eventTarget[getAttribute](dataToggle) || eventTarget[parentNode] && getAttribute in eventTarget[parentNode] && eventTarget[parentNode][getAttribute](dataToggle));
         if ( eventTarget === element || eventTarget === parent || eventTarget[parentNode] === element ) {
           e.preventDefault(); // comment this line to stop preventing navigation when click target is a link 
           relatedTarget = element;
           self.toggle();
         } else if ( isOpen ) {
-          if ( (eventTarget === menu || children && children[indexOf](eventTarget) > -1) && ( self.persist || hasData ) ) {
+          if ( eventTarget === menu || children && nodeListToArray(children)[indexOf](eventTarget) > -1 && (self.persist || hasData) ) {
             return;
           } else { relatedTarget = null; hide(); }
         }
@@ -1030,7 +1034,7 @@
       bodyIsOverflowing, modalIsOverflowing, scrollbarWidth, overlay,
   
       // also find fixed-top / fixed-bottom items
-      fixedItems = getElementsByClassName(doc,'navbar-fixed-top').concat(getElementsByClassName(doc,'navbar-fixed-bottom')),
+      fixedItems = getElementsByClassName(doc,fixedTop).concat(getElementsByClassName(doc,fixedBottom)),
   
       // private methods
       getWindowWidth = function() {
@@ -1116,6 +1120,31 @@
           off(modal, clickEvent, dismissHandler);
         }
       },
+      // triggers
+      triggerShow = function() {
+        open = self.open = true;
+        setFocus(modal);
+        bootstrapCustomEvent.call(modal, shownEvent, component, relatedTarget);
+      },
+      triggerHide = function() {
+        resizeHandlerToggle();
+        dismissHandlerToggle();
+        keydownHandlerToggle();
+  
+        modal[style].display = '';
+  
+        open = self.open = false;
+        element && (setFocus(element));
+        bootstrapCustomEvent.call(modal, hiddenEvent, component);
+        setTimeout(function(){
+          if (!getElementsByClassName(document,component+' '+inClass)[0]) {
+            resetAdjustments();
+            resetScrollbar();
+            removeClass(body,component+'-open');
+            removeOverlay(); 
+          }
+        }, 100);
+      },    
       // handlers
       clickHandler = function(e) {
         var clickTarget = e[target]; 
@@ -1177,11 +1206,7 @@
         addClass(modal,inClass);
         modal[setAttribute](ariaHidden, false);
   
-        emulateTransitionEnd(modal, function() {
-          open = self.open = true;
-          setFocus(modal);
-          bootstrapCustomEvent.call(modal, shownEvent, component, relatedTarget);
-        });
+        hasClass(modal,'fade') ? emulateTransitionEnd(modal, triggerShow) : triggerShow();
       }, supportTransitions ? 150 : 0);
     };
     this.hide = function() {
@@ -1194,25 +1219,7 @@
       !!overlay && removeClass(overlay,inClass);
   
       setTimeout(function(){
-        emulateTransitionEnd(modal, function() {
-          resizeHandlerToggle();
-          dismissHandlerToggle();
-          keydownHandlerToggle();
-  
-          modal[style].display = '';
-  
-          open = self.open = false;
-          element && (setFocus(element));
-          bootstrapCustomEvent.call(modal, hiddenEvent, component);
-          setTimeout(function(){
-            if (!getElementsByClassName(document,component+' '+inClass)[0]) {
-              resetAdjustments();
-              resetScrollbar();
-              removeClass(body,component+'-open');
-              removeOverlay(); 
-            }
-          }, 100);
-        });
+        hasClass(modal,'fade') ? emulateTransitionEnd(modal, triggerHide) : triggerHide();
       }, supportTransitions ? 150 : 0);
     };
     this.setContent = function( content ) {
@@ -1276,8 +1283,8 @@
         modal = getClosest(element,'.modal'),
         
         // maybe the element is inside a fixed navbar
-        navbarFixedTop = getClosest(element,fixedTop),
-        navbarFixedBottom = getClosest(element,fixedBottom);
+        navbarFixedTop = getClosest(element,'.'+fixedTop),
+        navbarFixedBottom = getClosest(element,'.'+fixedBottom);
   
     // set options
     options = options || {};
@@ -1360,6 +1367,15 @@
           placementSetting = updatePlacement(placementSetting); 
           styleTip(element,popover,placementSetting,self[container]); 
         }
+      },
+      
+      // triggers
+      showTrigger = function() {
+        bootstrapCustomEvent.call(element, shownEvent, component);
+      },
+      hideTrigger = function() {
+        removePopover();
+        bootstrapCustomEvent.call(element, hiddenEvent, component);
       };
   
     // public methods / handlers
@@ -1376,9 +1392,7 @@
           updatePopover();
           showPopover();
           bootstrapCustomEvent.call(element, showEvent, component);
-          emulateTransitionEnd(popover, function() {
-            bootstrapCustomEvent.call(element, shownEvent, component);
-          });
+          !!self[animation] ? emulateTransitionEnd(popover, showTrigger) : showTrigger();
         }
       }, 20 );
     };
@@ -1388,10 +1402,7 @@
         if (popover && popover !== null && hasClass(popover,inClass)) {
           bootstrapCustomEvent.call(element, hideEvent, component);
           removeClass(popover,inClass);
-          emulateTransitionEnd(popover, function() {
-            removePopover();
-            bootstrapCustomEvent.call(element, hiddenEvent, component);
-          });
+          !!self[animation] ? emulateTransitionEnd(popover, hideTrigger) : hideTrigger();
         }
       }, self[delay] );
     };
@@ -1542,7 +1553,39 @@
     var self = this, next,
       tabs = getClosest(element,'.nav'),
       tabsContentContainer,
-      dropdown = tabs && queryElement('.dropdown',tabs);
+      dropdown = tabs && queryElement('.dropdown',tabs),
+      activeTab, activeContent, nextContent,
+      // trigger
+      triggerShow = function() {
+        bootstrapCustomEvent.call(next, shownEvent, component, activeTab);
+        if (tabsContentContainer) { // height animation
+          (function(){
+            setTimeout(function(){
+              tabsContentContainer[style][height] = '';
+              removeClass(tabsContentContainer,collapsing);
+              activeTab[isAnimating] = next[isAnimating] = false;
+            },200);
+          }());
+        } else { 
+          activeTab[isAnimating] = next[isAnimating] = false; 
+        }
+      },
+      triggerHide = function() {
+        removeClass(activeContent,active);
+        addClass(nextContent,active);
+        setTimeout(function() {
+          addClass(nextContent,inClass);
+          nextContent[offsetHeight];
+          if (tabsContentContainer) addClass(tabsContentContainer,collapsing);
+          (function() {
+            bootstrapCustomEvent.call(next, showEvent, component, activeTab);
+            (function() {
+              if(tabsContentContainer) tabsContentContainer[style][height] = getMaxHeight(nextContent) + 'px'; // height animation
+              bootstrapCustomEvent.call(activeTab, hiddenEvent, component, next);
+            }());
+          }());
+        },20);
+      };
   
     if (!tabs) return; // invalidate 
   
@@ -1569,9 +1612,11 @@
   
     // public method
     this.show = function() { // the tab we clicked is now the next tab
-      var nextContent = queryElement(next[getAttribute]('href')), //this is the actual object, the next tab content to activate
-        activeTab = getActiveTab(), activeContent = getActiveContent();      
-      
+      next = next || element;
+      nextContent = queryElement(next[getAttribute]('href')); //this is the actual object, the next tab content to activate
+      activeTab = getActiveTab(); 
+      activeContent = getActiveContent();
+  
       if ( (!activeTab[isAnimating] || !next[isAnimating]) && !hasClass(next[parentNode],active) ) {
         activeTab[isAnimating] = next[isAnimating] = true;
         removeClass(activeTab[parentNode],active);
@@ -1591,42 +1636,12 @@
           removeClass(activeContent,inClass);
           bootstrapCustomEvent.call(activeTab, hideEvent, component, next);
           (function(){
-            emulateTransitionEnd(activeContent, function() {
-              removeClass(activeContent,active);
-              addClass(nextContent,active);
-              setTimeout(function() {
-                addClass(nextContent,inClass);
-                nextContent[offsetHeight];
-                if (tabsContentContainer) addClass(tabsContentContainer,collapsing);
-                (function() {
-                  bootstrapCustomEvent.call(next, showEvent, component, activeTab);
-                  (function() {
-                    if(tabsContentContainer) tabsContentContainer[style][height] = getMaxHeight(nextContent) + 'px'; // height animation
-                    bootstrapCustomEvent.call(activeTab, hiddenEvent, component, next);
-                  }());
-                }());
-              },20);
-            });
+            hasClass(activeContent, 'fade') ? emulateTransitionEnd(activeContent, triggerHide) : triggerHide();
           }());
         }());
   
         (function(){
-          emulateTransitionEnd(nextContent, function() {
-            bootstrapCustomEvent.call(next, shownEvent, component, activeTab);
-            if (tabsContentContainer) { // height animation
-              (function(){
-                emulateTransitionEnd(tabsContentContainer, function(){
-                  setTimeout(function(){
-                    tabsContentContainer[style][height] = '';
-                    removeClass(tabsContentContainer,collapsing);
-                    activeTab[isAnimating] = next[isAnimating] = false;
-                  },200);
-                });
-              }());
-            } else { 
-              activeTab[isAnimating] = next[isAnimating] = false; 
-            }
-          });
+          hasClass(nextContent, 'fade') ? emulateTransitionEnd(nextContent, triggerShow) : triggerShow();
         }());
       }
     };
@@ -1655,8 +1670,8 @@
     element = queryElement(element);
   
     // DATA API
-    var animationData = element[getAttribute](dataAnimation);
-        placementData = element[getAttribute](dataPlacement);
+    var animationData = element[getAttribute](dataAnimation),
+        placementData = element[getAttribute](dataPlacement),
         delayData = element[getAttribute](dataDelay),
         containerData = element[getAttribute](dataContainer),
         
@@ -1671,8 +1686,8 @@
         modal = getClosest(element,'.modal'),
         
         // maybe the element is inside a fixed navbar
-        navbarFixedTop = getClosest(element,fixedTop),
-        navbarFixedBottom = getClosest(element,fixedBottom);
+        navbarFixedTop = getClosest(element,'.'+fixedTop),
+        navbarFixedBottom = getClosest(element,'.'+fixedBottom);
   
     // set options
     options = options || {};
@@ -1720,6 +1735,14 @@
       },
       showTooltip = function () {
         !hasClass(tooltip,inClass) && ( addClass(tooltip,inClass) );
+      },
+      // triggers
+      showTrigger = function() {
+        bootstrapCustomEvent.call(element, shownEvent, component);
+      },
+      hideTrigger = function() {
+        removeToolTip();
+        bootstrapCustomEvent.call(element, hiddenEvent, component);
       };
   
     // public methods
@@ -1732,9 +1755,7 @@
           updateTooltip();
           showTooltip();
           bootstrapCustomEvent.call(element, showEvent, component);
-          emulateTransitionEnd(tooltip, function() {
-            bootstrapCustomEvent.call(element, shownEvent, component);
-          });
+          !!self[animation] ? emulateTransitionEnd(tooltip, showTrigger) : showTrigger();
         }
       }, 20 );
     };
@@ -1744,10 +1765,7 @@
         if (tooltip && tooltip !== null && hasClass(tooltip,inClass)) {
           bootstrapCustomEvent.call(element, hideEvent, component);
           removeClass(tooltip,inClass);
-          emulateTransitionEnd(tooltip, function() {
-            removeToolTip();
-            bootstrapCustomEvent.call(element, hiddenEvent, component);
-          });
+          !!self[animation] ? emulateTransitionEnd(tooltip, hideTrigger) : hideTrigger();
         }
       }, self[delay]);
     };

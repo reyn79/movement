@@ -26,7 +26,39 @@ var Tab = function( element, options ) {
   var self = this, next,
     tabs = getClosest(element,'.nav'),
     tabsContentContainer,
-    dropdown = tabs && queryElement('.dropdown',tabs);
+    dropdown = tabs && queryElement('.dropdown',tabs),
+    activeTab, activeContent, nextContent,
+    // trigger
+    triggerShow = function() {
+      bootstrapCustomEvent.call(next, shownEvent, component, activeTab);
+      if (tabsContentContainer) { // height animation
+        (function(){
+          setTimeout(function(){
+            tabsContentContainer[style][height] = '';
+            removeClass(tabsContentContainer,collapsing);
+            activeTab[isAnimating] = next[isAnimating] = false;
+          },200);
+        }());
+      } else { 
+        activeTab[isAnimating] = next[isAnimating] = false; 
+      }
+    },
+    triggerHide = function() {
+      removeClass(activeContent,active);
+      addClass(nextContent,active);
+      setTimeout(function() {
+        addClass(nextContent,inClass);
+        nextContent[offsetHeight];
+        if (tabsContentContainer) addClass(tabsContentContainer,collapsing);
+        (function() {
+          bootstrapCustomEvent.call(next, showEvent, component, activeTab);
+          (function() {
+            if(tabsContentContainer) tabsContentContainer[style][height] = getMaxHeight(nextContent) + 'px'; // height animation
+            bootstrapCustomEvent.call(activeTab, hiddenEvent, component, next);
+          }());
+        }());
+      },20);
+    };
 
   if (!tabs) return; // invalidate 
 
@@ -53,9 +85,11 @@ var Tab = function( element, options ) {
 
   // public method
   this.show = function() { // the tab we clicked is now the next tab
-    var nextContent = queryElement(next[getAttribute]('href')), //this is the actual object, the next tab content to activate
-      activeTab = getActiveTab(), activeContent = getActiveContent();      
-    
+    next = next || element;
+    nextContent = queryElement(next[getAttribute]('href')); //this is the actual object, the next tab content to activate
+    activeTab = getActiveTab(); 
+    activeContent = getActiveContent();
+
     if ( (!activeTab[isAnimating] || !next[isAnimating]) && !hasClass(next[parentNode],active) ) {
       activeTab[isAnimating] = next[isAnimating] = true;
       removeClass(activeTab[parentNode],active);
@@ -75,42 +109,12 @@ var Tab = function( element, options ) {
         removeClass(activeContent,inClass);
         bootstrapCustomEvent.call(activeTab, hideEvent, component, next);
         (function(){
-          emulateTransitionEnd(activeContent, function() {
-            removeClass(activeContent,active);
-            addClass(nextContent,active);
-            setTimeout(function() {
-              addClass(nextContent,inClass);
-              nextContent[offsetHeight];
-              if (tabsContentContainer) addClass(tabsContentContainer,collapsing);
-              (function() {
-                bootstrapCustomEvent.call(next, showEvent, component, activeTab);
-                (function() {
-                  if(tabsContentContainer) tabsContentContainer[style][height] = getMaxHeight(nextContent) + 'px'; // height animation
-                  bootstrapCustomEvent.call(activeTab, hiddenEvent, component, next);
-                }());
-              }());
-            },20);
-          });
+          hasClass(activeContent, 'fade') ? emulateTransitionEnd(activeContent, triggerHide) : triggerHide();
         }());
       }());
 
       (function(){
-        emulateTransitionEnd(nextContent, function() {
-          bootstrapCustomEvent.call(next, shownEvent, component, activeTab);
-          if (tabsContentContainer) { // height animation
-            (function(){
-              emulateTransitionEnd(tabsContentContainer, function(){
-                setTimeout(function(){
-                  tabsContentContainer[style][height] = '';
-                  removeClass(tabsContentContainer,collapsing);
-                  activeTab[isAnimating] = next[isAnimating] = false;
-                },200);
-              });
-            }());
-          } else { 
-            activeTab[isAnimating] = next[isAnimating] = false; 
-          }
-        });
+        hasClass(nextContent, 'fade') ? emulateTransitionEnd(nextContent, triggerShow) : triggerShow();
       }());
     }
   };

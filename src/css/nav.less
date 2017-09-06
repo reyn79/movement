@@ -38,20 +38,16 @@
   border: 0;
   .phone {
     padding-top: 24px;
-  }
-  .phone a {
-    font-size: 2em;
-    color: #fff;
-    text-transform: uppercase;
+    padding-left: 10px;
     font-weight: 600;
   }
 }
 
 .navbar-nav {
   > li {
-  	a {
-	    line-height: 30px;
-  	}
+    a {
+      line-height: 30px;
+    }
     > .dropdown-menu {
       margin-top: 0;
       border-radius: 15px;
@@ -67,13 +63,13 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: @screen-sm) and (max-width: @screen-md) {
   #collapseone .navbar-nav {
     width: 80%;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: @screen-md) {
   .navbar-nav {
     float: left;
     margin-left: 30px;
@@ -84,7 +80,7 @@
   }
 }
 
-@media(min-width:768px) {
+@media (min-width: @screen-sm) {
   .navbar-collapse {
     .nav {
       > li {
@@ -122,50 +118,50 @@
   position: absolute;
   right: 20px;
   top: -3px;
-  >li>a>i {
+  > li > a > i {
     font-size: 19px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: @screen-sm) {
   .navbar-social {
     right: 75px;
   }
 }
 
-.navbar-inverse .navbar-nav>li>a {
+.navbar-inverse .navbar-nav > li > a {
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
 }
 
-.navbar-inverse .navbar-nav>li>a:hover {
+.navbar-inverse .navbar-nav > li > a:hover {
   color: @yell-lt;
 }
 
-.navbar-inverse .navbar-nav>.open>a,
-.navbar-inverse .navbar-nav>.open>a:hover,
-.navbar-inverse .navbar-nav>.open>a:focus {
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
   color: #fff;
   background-color: transparent;
 }
 
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:hover,
-.navbar-inverse .navbar-nav>.active>a:focus {
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
   color: @yell-lt;
   background-color: transparent;
 }
 
-.navbar-inverse .navbar-nav>.special>a,
-.navbar-inverse .navbar-nav>.special>a:hover,
-.navbar-inverse .navbar-nav>.special>a:focus {
-  background-color: #FEDF22 !important;
+.navbar-inverse .navbar-nav > .special > a,
+.navbar-inverse .navbar-nav > .special > a:hover,
+.navbar-inverse .navbar-nav > .special > a:focus {
+  background-color: #fedf22 !important;
   color: #000 !important;
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 767px) {
+@media (max-width: @screen-sm) {
   .navbar-nav .open .dropdown-menu .dropdown-menu > li > a {
     padding-left: 60px !important;
     color: #ddd !important;

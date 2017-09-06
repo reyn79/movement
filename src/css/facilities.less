@@ -1,0 +1,46 @@
+body.facilities {
+	padding-top: 4em;
+	strong {
+		color: @yell-lt;
+	}
+	ul.basic {
+		list-style-type: none;
+		padding: 0;
+		i {
+			font-size: 1.5em;
+			color: @yell-lt;
+			padding-right: @spacer-10;
+		}
+		li {
+			color: @white-lt;
+			padding-bottom: 10px;
+			span {
+				padding-left: @spacer-10;
+				vertical-align: top;
+				font-weight: 900;
+			}
+		}
+	}
+	.side {
+		padding-top: 1em;
+	}
+	.thumbnail {
+		background-color: @blk-md;
+		padding: 0;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		border: none;
+	}
+	@media (min-width: @screen-sm) {
+		padding-top: 10em;
+	}
+	@media (min-width: @screen-md) {
+		.side {
+			padding-top: 4em;
+		}
+		.thumbnail {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}

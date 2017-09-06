@@ -1,0 +1,28 @@
+body.faq {
+	padding-top: 4em;
+	strong {
+		color: @yell-lt;
+	}
+	.images {
+		padding-top: 1em;
+	}
+	.thumbnail {
+		background-color: @blk-md;
+		padding: 0;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		border: none;
+	}
+	@media (min-width: @screen-sm) {
+		padding-top: 10em;
+	}
+	@media (min-width: @screen-md) {
+		.images {
+			padding-top: 4em;
+		}
+		.thumbnail {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}

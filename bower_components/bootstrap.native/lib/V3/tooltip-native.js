@@ -10,8 +10,8 @@ var Tooltip = function( element,options ) {
   element = queryElement(element);
 
   // DATA API
-  var animationData = element[getAttribute](dataAnimation);
-      placementData = element[getAttribute](dataPlacement);
+  var animationData = element[getAttribute](dataAnimation),
+      placementData = element[getAttribute](dataPlacement),
       delayData = element[getAttribute](dataDelay),
       containerData = element[getAttribute](dataContainer),
       
@@ -26,8 +26,8 @@ var Tooltip = function( element,options ) {
       modal = getClosest(element,'.modal'),
       
       // maybe the element is inside a fixed navbar
-      navbarFixedTop = getClosest(element,fixedTop),
-      navbarFixedBottom = getClosest(element,fixedBottom);
+      navbarFixedTop = getClosest(element,'.'+fixedTop),
+      navbarFixedBottom = getClosest(element,'.'+fixedBottom);
 
   // set options
   options = options || {};
@@ -75,6 +75,14 @@ var Tooltip = function( element,options ) {
     },
     showTooltip = function () {
       !hasClass(tooltip,inClass) && ( addClass(tooltip,inClass) );
+    },
+    // triggers
+    showTrigger = function() {
+      bootstrapCustomEvent.call(element, shownEvent, component);
+    },
+    hideTrigger = function() {
+      removeToolTip();
+      bootstrapCustomEvent.call(element, hiddenEvent, component);
     };
 
   // public methods
@@ -87,9 +95,7 @@ var Tooltip = function( element,options ) {
         updateTooltip();
         showTooltip();
         bootstrapCustomEvent.call(element, showEvent, component);
-        emulateTransitionEnd(tooltip, function() {
-          bootstrapCustomEvent.call(element, shownEvent, component);
-        });
+        !!self[animation] ? emulateTransitionEnd(tooltip, showTrigger) : showTrigger();
       }
     }, 20 );
   };
@@ -99,10 +105,7 @@ var Tooltip = function( element,options ) {
       if (tooltip && tooltip !== null && hasClass(tooltip,inClass)) {
         bootstrapCustomEvent.call(element, hideEvent, component);
         removeClass(tooltip,inClass);
-        emulateTransitionEnd(tooltip, function() {
-          removeToolTip();
-          bootstrapCustomEvent.call(element, hiddenEvent, component);
-        });
+        !!self[animation] ? emulateTransitionEnd(tooltip, hideTrigger) : hideTrigger();
       }
     }, self[delay]);
   };

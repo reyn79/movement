@@ -38,9 +38,9 @@ var Carousel = function( element, options ) {
     slides = getElementsByClassName(element,'item'), total = slides[length],
     slideDirection = this[direction] = left,
     controls = getElementsByClassName(element,component+'-control'),
-    leftArrow = controls[0], rightArrow = controls[1]/*,
+    leftArrow = controls[0], rightArrow = controls[1],
     indicator = queryElement( '.'+component+'-indicators', element ),
-    indicators = indicator[getElementsByTagName]( "LI" );*/
+    indicators = indicator && indicator[getElementsByTagName]( "LI" ) || [];
 
   // handlers
   var pauseHandler = function () {
@@ -55,7 +55,7 @@ var Carousel = function( element, options ) {
         !isSliding && clearInterval( timer );
         !isSliding && self.cycle();
       }
-    }/*,
+    },
     indicatorHandler = function(e) {
       e.preventDefault();
       if (isSliding) return;
@@ -74,7 +74,7 @@ var Carousel = function( element, options ) {
       } else { return false; }
 
       self.slideTo( index ); //Do the slide
-    }*/,
+    },
     controlsHandler = function (e) {
       e.preventDefault();
       if (isSliding) return;
@@ -121,14 +121,14 @@ var Carousel = function( element, options ) {
         default: return;
       }
       self.slideTo( index ); //Do the slide
-    }/*,
+    },
     // private methods
     setActivePage = function( pageIndex ) { //indicators
       for ( var i = 0, icl = indicators[length]; i < icl; i++ ) {
         removeClass(indicators[i],active);
       }
       if (indicators[pageIndex]) addClass(indicators[pageIndex], active);
-    }*/;
+    };
 
 
   // public methods
@@ -149,7 +149,7 @@ var Carousel = function( element, options ) {
 
     isSliding = this.isSliding = true;
     clearInterval(timer);
-    // setActivePage( next );
+    setActivePage( next );
 
     if ( supportTransitions && hasClass(element,'slide') ) {
 
@@ -175,7 +175,7 @@ var Carousel = function( element, options ) {
           if ( self[interval] && !hasClass(element,paused) ) {
             self.cycle();
           }
-        },timeout);
+        },timeout+100);
       });
 
     } else {
@@ -208,13 +208,13 @@ var Carousel = function( element, options ) {
     rightArrow && on( rightArrow, clickEvent, controlsHandler );
     leftArrow && on( leftArrow, clickEvent, controlsHandler );
   
-    // indicator && on( indicator, clickEvent, indicatorHandler, false);
+    indicator && on( indicator, clickEvent, indicatorHandler, false);
     this[keyboard] === true && on( globalObject, keydownEvent, keyHandler, false);
 
   }
   if (this.getActiveIndex()<0) {
     slides[length] && addClass(slides[0],active);
-    // indicators[length] && setActivePage(0);
+    indicators[length] && setActivePage(0);
   }
 
   if ( this[interval] ){ this.cycle(); }

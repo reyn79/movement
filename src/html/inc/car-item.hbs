@@ -1,15 +1,10 @@
 {{#each this}}
 <div class="item{{#if @first}} active{{/if}}">
     <div class="row">
-        <div class="col-md-2 col-xs-12 text-center">
-            <p><a href="#">
-                <img src="{{profile_photo_url}}" alt="{{author_name}}">
-            </a></p>
-        </div>
-        <div class="col-md-10 col-xs-12 item-body">
-            <p>{{text}}
-                <span>{{author_name}}</span>
-            </p>
+    <div class="col-md-12 col-xs-12 item-body text-center">
+            <p>{{text}}</p>
+            <p><img src="{{profile_photo_url}}" alt="{{author_name}}"></p>
+            <p><span>{{author_name}}</span></p>
         </div>
     </div>
 </div>
