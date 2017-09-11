@@ -1,7 +1,6 @@
 /* About */
 
 body.about {
-  padding-top: 10em;
   section {
     padding-bottom: @spacer-50;
     h3,
@@ -32,6 +31,9 @@ body.about {
       border: none;
       border-radius: 0;
     }
+    .threec {
+      padding-top: @spacer-20;
+    }
   }
   .philosophy {
     padding-top: @spacer-50;
@@ -39,5 +41,11 @@ body.about {
   }
   .instagram {
     padding-top: @spacer-50;
+  }
+  @media (max-width: @screen-sm) {
+    padding-top: 5em;
+  }
+  @media (min-width: @screen-sm) and (max-width: @screen-md) {
+    padding-top: 10em;
   }
 }

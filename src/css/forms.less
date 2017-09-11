@@ -23,11 +23,11 @@ input[type="color"],
   min-height: 45px;
   border-radius: 0;
   font-size: 12px;
-  color: #7a7a7a;
+  color: @white-lt;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  background: #fff;
+  background: @blk-lt;
   -webkit-transition: all 200ms ease-in;
   -o-transition: all 200ms ease-in;
   -moz-transition: all 200ms ease-in;
@@ -51,7 +51,8 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 .form-control:focus {
   border-color: #999;
-  background: #fff;
+  background: @yell-lt;
+  color: @blk;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -81,6 +82,25 @@ input[type="color"]:focus,
     color: @blk;
     text-transform: none;
     font-weight: 900;
+  }
+  input {
+    &:valid {
+      border-bottom: 5px solid green;
+    }
+    &:focus:invalid {
+      border-bottom: 5px solid red;
+    }
+  }
+  #errormessage {
+    color: @blk;
+  }
+  .errspan {
+    float: right;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: red;
   }
 }
 

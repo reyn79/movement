@@ -13,23 +13,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h1>Styles</h1>
                     {{> body }}
                 </div>
-                <div class="col-md-4 side">
+                <div class="col-md-4 side black">
                     <h3>Come train with us <br><span>Your first week is free!</span></h3>
-                    <form class="black">
-                        <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-                        <input type="text" class="form-control" placeholder="Email address" id="email" required data-validation-required-message="Please enter your email.">
-                        <input type="text" class="form-control" placeholder="Phone number" id="phone" required data-validation-required-message="Please enter your phone number.">
-                        <select id="enquiry" required data-validation-required-message="Please select class">
-                            <option selected disabled>Class to attend</option>
-                            <option value="bjj">BJJ</option>
-                            <option value="muaythai">Muay Thai</option>
-                            <option value="mma">MMA</option>
-                        </select>
-                        <button type="submit" class="btn">Get your free trial!</button>
-                    </form>
+                    {{> form button="Get your free trial!"}}
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
     },
     {
       "key": "Styles",
-      "data": "styles.html",
+      "data": "index.html#intro-styles",
       "class": "styles"
     },
     {
@@ -29,6 +29,11 @@
       "key": "FAQ",
       "data": "faq.html",
       "class": "faq"
+    },
+    {
+      "key": "Contact us",
+      "data": "contact.html",
+      "class": "contact"
     },
     {
       "key": "Free Trial",

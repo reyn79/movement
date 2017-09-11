@@ -48,6 +48,88 @@ var movement = (function() {
 	};
 	var _helpers = {
 		/**
+		 * [ajax make ajax requests
+		 * https://stackoverflow.com/questions/8567114/how-to-make-an-ajax-call-without-jquery]
+		 * @type {Object}
+		 */
+		ajax: {
+			x: function() {
+				if (typeof XMLHttpRequest !== "undefined") {
+					return new XMLHttpRequest();
+				}
+				var versions = [
+					"MSXML2.XmlHttp.6.0",
+					"MSXML2.XmlHttp.5.0",
+					"MSXML2.XmlHttp.4.0",
+					"MSXML2.XmlHttp.3.0",
+					"MSXML2.XmlHttp.2.0",
+					"Microsoft.XmlHttp"
+				];
+
+				var xhr;
+				for (var i = 0; i < versions.length; i++) {
+					try {
+						xhr = new ActiveXObject(versions[i]);
+						break;
+					} catch (e) {}
+				}
+				return xhr;
+			},
+			send: function(url, callback, method, data, async) {
+				if (async === undefined) {
+					async = true;
+				}
+				var x = _helpers.ajax.x();
+				x.open(method, url, async);
+				x.onreadystatechange = function() {
+					if (x.readyState == 4) {
+						callback(x);
+					}
+				};
+				if (method == "POST") {
+					x.setRequestHeader(
+						"Content-type",
+						"application/x-www-form-urlencoded"
+					);
+				}
+				x.send(data);
+			},
+			get: function(url, data, callback, async) {
+				var query = [];
+				for (var key in data) {
+					query.push(
+						encodeURIComponent(key) +
+							"=" +
+							encodeURIComponent(data[key])
+					);
+				}
+				_helpers.ajax.send(
+					url + (query.length ? "?" + query.join("&") : ""),
+					callback,
+					"GET",
+					null,
+					async
+				);
+			},
+			post: function(url, data, callback, async) {
+				var query = [];
+				for (var key in data) {
+					query.push(
+						encodeURIComponent(key) +
+							"=" +
+							encodeURIComponent(data[key])
+					);
+				}
+				_helpers.ajax.send(
+					url,
+					callback,
+					"POST",
+					query.join("&"),
+					async
+				);
+			}
+		},
+		/**
 		 * Takes an element and applies style rules to it
 		 * @param  {[HTMLElement]} el - the element you want to style
 		 * @param  {[object]} styles - contains the css rules to apply
@@ -150,6 +232,69 @@ var movement = (function() {
 	 */
 	var _private = {
 		/**
+		 * [attachForm find any forms on the page and attach sendForm function
+		 * limitations - only attaches the one function, assumes all forms are the same]
+		 * @return {[type]} [description]
+		 */
+		attachForm: function() {
+			//find all forms
+			var forms = document.getElementsByTagName("form");
+
+			//for each attach the sendForm function to submit
+			for (var i = forms.length - 1; i >= 0; i--) {
+				_helpers.addEvent(forms[i], "submit", _private.validateForm);
+			}
+		},
+		// TODO implement validation
+		validateForm: function() {
+			event.preventDefault();
+			// get values
+			// function to take values and return object with valid or not
+			var name = document.getElementById("name");
+			var email = document.getElementById("email");
+			var phone = document.getElementById("phone");
+			// var enquiry = document.getElementById("enquiry");
+			// Basic check
+			if (this.checkValidity()) {
+				var data = {
+					name: name.value,
+					email: email.value,
+					phone: phone.value /*,
+					enquiry: enquiry.value*/
+				};
+				_private.sendForm(data);
+			} else {
+				// setup messages
+				var error = document.getElementById("errormessage");
+				_helpers.removeClass(error, "hidden");
+			}
+		},
+		/**
+		 * [sendForm Validates form and then posts to PHP]
+		 * @return {[type]} [description]
+		 */
+		sendForm: function(data) {
+			event.preventDefault();
+
+			// post to php page
+			if (data) {
+				movement.ajax.post("mail/contact_me.php", data, function(data) {
+					// setup messages
+					var success = document.getElementById("successmessage");
+					var error = document.getElementById("errormessage");
+
+					// was it successful?
+					switch (data.status) {
+						case 200:
+							_helpers.removeClass(success, "hidden");
+							break;
+						default:
+							_helpers.removeClass(error, "hidden");
+					}
+				});
+			}
+		},
+		/**
 		 * [activeNav sets the active page on the main nav]
 		 * @return {[void]} [manipulates DOM]
 		 */
@@ -157,8 +302,14 @@ var movement = (function() {
 			var body = document.querySelector("body");
 			var bodyClass = body.getAttribute("class");
 			var nav = document.getElementsByClassName(CLASSES.NAVITEM);
+			var hash = window.location.hash;
+			// check nav items for match
 			for (var i = nav.length - 1; i >= 0; i--) {
 				if (_helpers.hasClass(nav[i], bodyClass)) {
+					_helpers.addClass(nav[i], "active");
+				}
+				// check if hash contains styles item
+				if (hash === "#intro-styles" && _helpers.hasClass(nav[i], "styles")) {
 					_helpers.addClass(nav[i], "active");
 				}
 			}
@@ -395,6 +546,8 @@ var movement = (function() {
 	 * @type {Object}
 	 */
 	var _public = {
+		ajax: _helpers.ajax,
+		attachForm: _private.attachForm,
 		activeNav: _private.activeNav,
 		loadGoogle: _private.loadGoogle,
 		getGoogleReviews: _private.getGoogleReviews,
@@ -414,10 +567,11 @@ function init() {
 	// TODO convince to enable CTA check
 	// var ctaShown = localStorage.getItem('freetrialshown');
 	movement.activeNav();
+	movement.attachForm();
 	movement.loadGoogle();
 	movement.changeBg();
-	movement.smoothLink();
-	movement.emailSend();
+	// movement.smoothLink();
+	// movement.emailSend();
 	// TODO convince to enable CTA check
 	/*if (!ctaShown) {
 		movement.scrollCta();

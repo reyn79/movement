@@ -8,31 +8,19 @@ pageid: "freetrial"
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<h1>Get your <br><span>free trial week!</span></h1></div>
+				<h1>Free Trial Week? <br><span>Yes Please!</span></h1></div>
 			</div>
 			<div class="row">
 				<div class="col-md-7">
-					<p>Enter your details and we will get in touch with you to organise your free trial classes</p>
+					<p>Simply enter your details and one of our friendly staff members will be in touch to organise your free week of classes.</p>
 					<ul>
 						<li><i class="glyphicon glyphicon-ok-sign"></i> <span>No obligation</span></li>
-						<li><i class="glyphicon glyphicon-ok-sign"></i> <span>Try BJJ or Muay Thai</span></li>
-						<li><i class="glyphicon glyphicon-ok-sign"></i> <span>Full use of our facilities</span></li>
-						<li><i class="glyphicon glyphicon-ok-sign"></i> <span>Flexible class times</span></li>
+						<li><i class="glyphicon glyphicon-ok-sign"></i> <span>Try Muay Thai, BJJ or both!</span></li>
+						<li><i class="glyphicon glyphicon-ok-sign"></i> <span>Full use of our facilities during classes</span></li>
 					</ul>
 				</div>
-				<div class="col-md-4">
-					<form class="yellow">
-						<input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-						<input type="text" class="form-control" placeholder="Email address" id="email" required data-validation-required-message="Please enter your email.">
-						<input type="text" class="form-control" placeholder="Phone number" id="phone" required data-validation-required-message="Please enter your phone number.">
-						<select id="enquiry" required data-validation-required-message="Please select class">
-							<option selected disabled>Class to attend</option>
-							<option value="bjj">BJJ</option>
-							<option value="muaythai">Muay Thai</option>
-							<option value="mma">MMA</option>
-						</select>
-						<button type="submit" class="btn">Book now!</button>
-					</form>
+				<div class="col-md-4 yellow">
+					{{> form button="Book now!"}}
 				</div>
 			</div>
 		</div>

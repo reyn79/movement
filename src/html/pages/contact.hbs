@@ -8,7 +8,7 @@ pageid: "contact"
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h1>Contact Us <br><span>We'd love to hear from you!</span></h1></div>
+                <h1><span>We'd love to hear from you</span></h1></div>
             </div>
             <div class="row">
                 <div class="col-md-7">
@@ -17,22 +17,9 @@ pageid: "contact"
                     <p class="big"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:0298871230" class="hidden-md hidden-lg">(02) 9887 1230</a><span class="hidden-xs hidden-sm">(02) 9887 1230</span></p>
                     <p class="big"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:hello@movementmartialarts.com.au">hello@movementmartialarts.com.au</a></p>
                 </div>
-                <div class="col-md-4">
-                    <form class="yellow">
-                        <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-                        <input type="text" class="form-control" placeholder="Email address" id="email" required data-validation-required-message="Please enter your email.">
-                        <input type="text" class="form-control" placeholder="Phone number" id="phone" required data-validation-required-message="Please enter your phone number.">
-                        <select id="enquiry" required data-validation-required-message="Please select class">
-                            <option selected disabled>Class to attend</option>
-                            <option value="bjj">BJJ</option>
-                            <option value="muaythai">Muay Thai</option>
-                            <option value="mma">MMA</option>
-                        </select>
-                        <button type="submit" class="btn">Click to contact us!</button>
-                    </form>
+                <div class="col-md-4 black">
+                    {{> form button="Click to contact us!"}}
                 </div>
             </div>
         </div>
     </section>
-
-    {{> location }}

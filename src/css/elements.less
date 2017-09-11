@@ -9,7 +9,7 @@
  */
 
 .row-flex,
-.row-flex > div[class*='col-'] {
+.row-flex > div[class*="col-"] {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -24,18 +24,18 @@
   flex: 0;
 }
 
-.row-flex > div[class*='col-'],
-.container-flex > div[class*='col-'] {
+.row-flex > div[class*="col-"],
+.container-flex > div[class*="col-"] {
   margin: -.2px;
   /* hack adjust for wrapping */
 }
 
-.container-flex > div[class*='col-'] div,
-.row-flex > div[class*='col-'] div {
+.container-flex > div[class*="col-"] div,
+.row-flex > div[class*="col-"] div {
   width: 100%;
 }
 
-/***********buttons***********/
+// Buttons
 
 .btn {
   display: inline-block;
@@ -107,7 +107,7 @@
   background-position: center center;
 }
 
-/******** Lists *************/
+// Lists
 
 .list-unstyled {
   padding-left: 0;
@@ -130,3 +130,11 @@
   background-color: @white-lt;
   border-top: 1px solid;
 }
+
+// Overrides
+.bg-success, .bg-danger {
+  padding: 1em;
+  margin-top: 1em;
+  color: @blk;
+}
+
