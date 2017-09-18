@@ -68,6 +68,15 @@ var movement = (function() {
 				"img/kids/P1020605.jpg",
 				"img/kids/P1020627.jpg",
 				"img/kids/P1020724.jpg"
+			],
+			mma: [
+				"img/mma/DSCF1877.jpg",
+				"img/mma/DSCF1884.jpg",
+				"img/mma/DSCF1905.jpg",
+				"img/mma/DSCF1917.jpg",
+				"img/mma/DSCF1922.jpg",
+				"img/mma/DSCF1925.jpg",
+				"img/mma/DSCF1928.jpg"
 			]
 		},
 		imgPath: "img/",
