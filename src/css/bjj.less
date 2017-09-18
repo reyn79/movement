@@ -1,10 +1,15 @@
 // Styles BJJ
-
+#bjjcarouselcontainer {
+	display: none;
+}
 .bjj {
 	padding-top: 2%;
 	padding-bottom: @spacer-50;
 	background-image: url("../img/bg-bjj.png");
-	background-position: 100% 50%;
+	background-position: 100% -1%;
 	background-size: 80%;
 	background-repeat: no-repeat;
+	@media (min-width: @screen-sm) {
+		background-position: 100% -4%;
+	}
 }

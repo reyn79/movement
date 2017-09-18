@@ -18,11 +18,58 @@ var movement = (function() {
 	CONST = {
 		gak: "AIzaSyAerv0HM1ZRtnN1hqRHb545CVYhGRGNd_w",
 		bgArray: ["bg-home.jpg", "kickbox-girl.jpg"],
-		stylesBjj: [
-			"http://lorempixel.com/500/250/",
-			"http://lorempixel.com/500/250/",
-			"http://lorempixel.com/500/250/"
-		],
+		styles: {
+			bjj: [
+				"img/bjj/DSCF1142.jpg",
+				"img/bjj/DSCF5885.jpg",
+				"img/bjj/DSCF5897.jpg",
+				"img/bjj/DSCF6005.jpg",
+				"img/bjj/DSCF6094.jpg",
+				"img/bjj/DSCF6132.jpg",
+				"img/bjj/DSCF6152.jpg",
+				"img/bjj/DSCF6157.jpg",
+				"img/bjj/DSCF6634.jpg",
+				"img/bjj/DSCF9751.jpg",
+				"img/bjj/Movement Martial Arts-81.jpg",
+				"img/bjj/P1000392.jpg",
+				"img/bjj/P1020824.jpg"
+			],
+			mt: [
+				"img/mt/1020962.jpg",
+				"img/mt/DSCF0424.jpg",
+				"img/mt/DSCF0530.jpg",
+				"img/mt/DSCF1707.jpg",
+				"img/mt/DSCF1712.jpg",
+				"img/mt/DSCF1713.jpg",
+				"img/mt/DSCF1723.jpg",
+				"img/mt/DSCF1749.jpg",
+				"img/mt/DSCF1764.jpg",
+				"img/mt/DSCF1771.jpg",
+				"img/mt/DSCF1772.jpg",
+				"img/mt/DSCF1776.jpg",
+				"img/mt/DSCF1794.jpg",
+				"img/mt/DSCF1801.jpg",
+				"img/mt/DSCF1811.jpg",
+				"img/mt/DSCF1824.jpg",
+				"img/mt/DSCF2853.jpg",
+				"img/mt/DSCF5828.jpg",
+				"img/mt/DSCF5830.jpg",
+				"img/mt/IMG_20170103_200108.jpg"
+			],
+			kids: [
+				"img/kids/DSCF0377.jpg",
+				"img/kids/DSCF9769.jpg",
+				"img/kids/DSCF9786.jpg",
+				"img/kids/DSCF9804.jpg",
+				"img/kids/DSCF9904.jpg",
+				"img/kids/IMG_20170124_171640.jpg",
+				"img/kids/P1020184.jpg",
+				"img/kids/P1020565.jpg",
+				"img/kids/P1020605.jpg",
+				"img/kids/P1020627.jpg",
+				"img/kids/P1020724.jpg"
+			]
+		},
 		imgPath: "img/",
 		testCar: "src/html/inc/car-item.hbs"
 	};
@@ -309,7 +356,10 @@ var movement = (function() {
 					_helpers.addClass(nav[i], "active");
 				}
 				// check if hash contains styles item
-				if (hash === "#intro-styles" && _helpers.hasClass(nav[i], "styles")) {
+				if (
+					hash === "#intro-styles" &&
+					_helpers.hasClass(nav[i], "styles")
+				) {
 					_helpers.addClass(nav[i], "active");
 				}
 			}
@@ -389,6 +439,51 @@ var movement = (function() {
 			}
 			// jscs:enable
 			/* jshint ignore:end */
+		},
+		stylesCarousels: function() {
+			// for each styles
+			var bjj = document.getElementById("bjjCar");
+			var mt = document.getElementById("mtCar");
+			var mma = document.getElementById("mmaCar");
+			var kids = document.getElementById("kidsCar");
+			// find the carousel
+			// fill the carousel with the appropriate photo array
+			if (bjj) {
+				_private.fillCarousel(
+					CONST.styles.bjj,
+					"bjjcarouselcontainer",
+					"bjjCar",
+					CLASSES.CAROUSEL,
+					"src/html/inc/car-item-styles.hbs"
+				);
+			}
+			if (mt) {
+				_private.fillCarousel(
+					CONST.styles.mt,
+					"mtcarouselcontainer",
+					"mtCar",
+					CLASSES.CAROUSEL,
+					"src/html/inc/car-item-styles.hbs"
+				);
+			}
+			if (mma) {
+				_private.fillCarousel(
+					CONST.styles.mma,
+					"mmacarouselcontainer",
+					"mmaCar",
+					CLASSES.CAROUSEL,
+					"src/html/inc/car-item-styles.hbs"
+				);
+			}
+			if (kids) {
+				_private.fillCarousel(
+					CONST.styles.kids,
+					"kidscarouselcontainer",
+					"kidsCar",
+					CLASSES.CAROUSEL,
+					"src/html/inc/car-item-styles.hbs"
+				);
+			}
 		},
 		/**
 		 * [fillCarousel construct the carousel]
@@ -554,7 +649,8 @@ var movement = (function() {
 		changeBg: _private.changeBg,
 		smoothLink: _private.smoothLink,
 		scrollCta: _private.scrollCta,
-		emailSend: _private.emailSend
+		emailSend: _private.emailSend,
+		stylesCarousels: _private.stylesCarousels
 	};
 	return _public;
 })();
@@ -570,6 +666,7 @@ function init() {
 	movement.attachForm();
 	movement.loadGoogle();
 	movement.changeBg();
+	movement.stylesCarousels();
 	// movement.smoothLink();
 	// movement.emailSend();
 	// TODO convince to enable CTA check

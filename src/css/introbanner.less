@@ -13,9 +13,9 @@
     color: #fff;
     margin: 0;
     text-transform: uppercase;
-    text-shadow: rgba(0, 0, 0, .2) 2px 6px 5px,
-      rgba(255, 255, 255, .4) 0 -4px 30px;
-    line-height: .9em;
+    text-shadow: rgba(0, 0, 0, 0.2) 2px 6px 5px,
+      rgba(255, 255, 255, 0.4) 0 -4px 30px;
+    line-height: 0.9em;
     padding: 5% 5px 0 5px;
     font-size: 4em;
     span {
@@ -25,9 +25,9 @@
   .container {
   }
   small {
-    font-size: .4em;
+    font-size: 0.4em;
     font-weight: 100;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     color: @yell-lt;
   }
   .buttons {
@@ -40,6 +40,7 @@
     font-size: 1em;
     font-weight: 800;
     padding: 15px;
+    margin-bottom: @spacer-20;
     &:hover {
       color: @blk;
       background-color: @yell-lt;
@@ -47,8 +48,13 @@
   }
   .blurb {
     padding-top: @spacer-30;
-    p{
+    p {
       color: @white-lt;
+    }
+  }
+  @media (min-width: @screen-lg) {
+    .btn {
+      margin-bottom: 0;
     }
   }
 }

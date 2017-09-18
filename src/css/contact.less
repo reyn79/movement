@@ -1,5 +1,5 @@
 body.contact {
-	font-size: 1.9em;
+	padding-top: 4em;
 	// background-color: @yell-lt;
 	h1 {
 		color: @yell-lt;
@@ -46,5 +46,11 @@ body.contact {
 				font-weight: 900;
 			}
 		}
+	}
+	@media (min-width: @screen-sm) and (max-width: @screen-md) {
+		padding-top: 8em;
+	}
+	@media (min-width: @screen-md) {
+		padding-top: 6em;
 	}
 }

@@ -53,7 +53,7 @@ module.exports = {
       {
         expand: true,
         cwd: "<%= config.src.img %>",
-        src: ["*.*"],
+        src: ["**/*.*"],
         dest: "<%= config.dist.img %>"
       },
       // Main media
