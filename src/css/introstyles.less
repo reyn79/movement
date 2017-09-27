@@ -11,11 +11,19 @@
 		font-weight: 900;
 		letter-spacing: 2px;
 		display: inline-block;
-		max-width: 50%;
-		text-shadow: @white-lt 0 0 20px;
+		max-width: 56%;
+		// text-shadow: @white-lt 0 0 20px;
 		padding-top: @spacer-30;
 		padding-left: @spacer-30;
 		position: absolute;
+		span {
+			padding: @spacer-10;
+			display: block;
+			color: white;
+			text-shadow: 0 2px black;
+			background: #333;
+			background: rgba(255, 255, 255, 0.3);
+		}
 	}
 	.btn {
 		position: absolute;
@@ -28,7 +36,7 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		padding-right: 14px;
-		a {
+		span {
 			background-image: url("../img/btn-yellow-right.png");
 			background-repeat: no-repeat;
 			background-position: center right;

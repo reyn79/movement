@@ -543,13 +543,20 @@ var movement = (function() {
 		 * @return {[void]}
 		 */
 		changeBg: function() {
-			var bg =
-				CONST.bgArray[Math.floor(Math.random() * CONST.bgArray.length)];
-			var imageUrl = "url(" + CONST.imgPath + bg + ")";
 			var el = document.getElementsByClassName(CLASSES.INTRO);
-			for (var i = el.length - 1; i >= 0; i--) {
-				_helpers.css(el[i], { "background-image": imageUrl });
-			}
+
+			var i = 0;
+			setInterval(function() {
+				_helpers.css(el[0], {
+					"background-image":
+						"url(" + CONST.imgPath + CONST.bgArray[i] + ")"
+				});
+				i = i + 1;
+				if (i == CONST.bgArray.length) {
+					i = 0;
+				}
+			}, 5000);
+			
 		},
 		/**
 		 * [smoothLink finds all elements with smoothlink class and attaches an event]

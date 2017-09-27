@@ -1,9 +1,11 @@
 // Intro Banner
 
 .intro-banner {
-  // position: relative;
-  // padding: 95px 0 95px 0;
-  // min-height: 100%;
+  background-image: url("../img/bg-home.jpg");
+  -webkit-transition: background 2s ease-out;
+  -moz-transition: background 2s ease-out;
+  -o-transition: background 2s ease-out;
+  transition: background 2s ease-out;
   background-repeat: no-repeat;
   background-position: center 0;
   padding-top: 23%;
@@ -38,9 +40,12 @@
     background-color: @white-lt;
     color: @blk;
     font-size: 1em;
-    font-weight: 800;
+    font-weight: 900;
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin-bottom: @spacer-20;
+    letter-spacing: 2px;
     &:hover {
       color: @blk;
       background-color: @yell-lt;
@@ -51,6 +56,9 @@
     p {
       color: @white-lt;
     }
+  }
+  .learnmore {
+    margin-right: @spacer-20;
   }
   @media (min-width: @screen-lg) {
     .btn {
