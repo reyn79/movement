@@ -54,7 +54,8 @@ var movement = (function() {
 				"img/mt/DSCF2853.jpg",
 				"img/mt/DSCF5828.jpg",
 				"img/mt/DSCF5830.jpg",
-				"img/mt/IMG_20170103_200108.jpg"
+				"img/mt/IMG_20170103_200108.jpg",
+				"img/mt/IMG_1141.jpg"
 			],
 			kids: [
 				"img/kids/DSCF0377.jpg",
