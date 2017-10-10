@@ -3,14 +3,18 @@
     <input type="email" class="form-control" placeholder="Email address" name="email" id="email" required data-validation-required-message="Please enter your email.">
     <span class="error" aria-live="polite"></span>
     <input type="text" class="form-control" placeholder="Phone number" name="phone" id="phone" required data-validation-required-message="Please enter your phone number.">
+    {{#if trial}}
     <select name="enquiry" id="enquiry">
         <option selected disabled>I'm interested in</option>
         <option value="bjj">BJJ</option>
         <option value="muaythai">Muay Thai</option>
         <option value="mma">MMA</option>
         <option value="kidsclass">Kids classes</option>
-        <option value="general">General Enquiry</option>
     </select>
+    {{/if}}
+    {{#if contact}}
+    <textarea name="textarea" id="message">Type your message here</textarea>
+    {{/if}}
     <button type="submit" class="btn">{{button}}</button>
 </form>
 <div id="successmessage" class="hidden">
