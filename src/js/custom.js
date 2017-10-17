@@ -318,15 +318,21 @@ var movement = (function() {
 			var name = document.getElementById("name");
 			var email = document.getElementById("email");
 			var phone = document.getElementById("phone");
-			// var enquiry = document.getElementById("enquiry");
+			var enquiry = document.getElementById("enquiry");
+			var message = document.getElementById("message");
 			// Basic check
 			if (this.checkValidity()) {
 				var data = {
 					name: name.value,
 					email: email.value,
-					phone: phone.value /*,
-					enquiry: enquiry.value*/
+					phone: phone.value
 				};
+				if (enquiry) {
+					data.enquiry = enquiry.value;
+				}
+				if (message) {
+					data.message = message.value;
+				}
 				_private.sendForm(data);
 			} else {
 				// setup messages

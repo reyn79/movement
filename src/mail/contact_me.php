@@ -2,8 +2,7 @@
 // check if fields passed are empty
 if(
 	empty($_POST['name']) ||
-	empty($_POST['phone']) 		||
-	empty($_POST['enquiry'])
+	empty($_POST['phone'])
 	)
    {
 	echo "No arguments Provided!";
@@ -19,7 +18,7 @@ $message = $_POST['message'];
 // create email body and send it	
 // $to = 'info@movementmartialarts.com.au';
 $to = 'reynold.ismail@gmail.com';
-$email_subject = "Contact form - $enquiry - submitted by:  $name";
+$email_subject = "Contact form - submitted by:  $name";
 $email_body = "You have received a new message. \n\n".
 				  "Here are the details:\n \nName: $name\n ".
 				  "Email: $email_address\n Phone: $phone\n".
