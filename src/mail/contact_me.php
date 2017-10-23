@@ -16,8 +16,8 @@ $enquiry = $_POST['enquiry'];
 $message = $_POST['message'];
 	
 // create email body and send it	
-// $to = 'info@movementmartialarts.com.au';
-$to = 'reynold.ismail@gmail.com';
+$to = 'info@movementmartialarts.com.au';
+// $to = 'reynold.ismail@gmail.com';
 $email_subject = "Contact form - submitted by:  $name";
 $email_body = "You have received a new message. \n\n".
 				  "Here are the details:\n \nName: $name\n ".
