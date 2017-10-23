@@ -1,0 +1,25 @@
+<form id="contactform" method="post">
+    <input type="text" class="form-control" placeholder="Name" name="name" id="name" required data-value-missing="Translate('Please enter your name')">
+    <input type="email" class="form-control" placeholder="Email address" name="email" id="email" required data-validation-required-message="Please enter your email.">
+    <span class="error" aria-live="polite"></span>
+    <input type="text" class="form-control" placeholder="Phone number" name="phone" id="phone" required data-validation-required-message="Please enter your phone number.">
+    {{#if trial}}
+    <select class="form-control" name="enquiry" id="enquiry">
+        <option disabled="disabled">I'm interested in</option>
+        <option value="bjj">BJJ</option>
+        <option value="muaythai">Muay Thai</option>
+        <option value="mma">MMA</option>
+        <option value="kidsclass">Kids classes</option>
+    </select>
+    {{/if}}
+    {{#if contact}}
+    <textarea name="message" id="message" placeholder="Type your message here"></textarea>
+    {{/if}}
+    <button type="submit" class="btn">{{button}}</button>
+</form>
+<div id="successmessage" class="hidden">
+    <p class="bg-success">Message successfully sent, a member of our team will be in contact shortly!</p>
+</div>
+<div id="errormessage" class="hidden">
+    <p class="bg-danger">There was a problem sending the message, please check the form and try again.</p>
+</div>

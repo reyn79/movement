@@ -1,0 +1,77 @@
+body.facilities {
+	padding-top: 4.9em;
+	strong {
+		color: @yell-lt;
+	}
+	ul.basic {
+		list-style-type: none;
+		padding: 0;
+		i {
+			font-size: 1.5em;
+			color: @yell-lt;
+			padding-right: @spacer-10;
+			display: block;
+			float: left;
+			width: 15%;
+		}
+		p {
+			display: block;
+			float: right;
+			width: 85%;
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			color: @white-lt;
+			padding-bottom: 10px;
+			span {
+				padding-left: @spacer-10;
+				vertical-align: top;
+				font-weight: 900;
+			}
+		}
+	}
+	.side {
+		padding-top: 1em;
+	}
+	.thumbnail {
+		background-color: @blk;
+		padding: 0;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		border: none;
+	}
+	@media (max-width: @screen-xs) {
+		ul.basic {
+			i {
+				width: 6%;
+			}
+			p {
+				width: 87%;
+			}
+		}
+	}
+	@media (min-width: @screen-xs) and (max-width: @screen-sm) {
+		ul.basic {
+			i {
+				width: 5%;
+			}
+			p {
+				width: 93%;
+			}
+		}
+	}
+	@media (min-width: @screen-sm) and (max-width: @screen-md) {
+		padding-top: 9em;
+	}
+	@media (min-width: @screen-md) {
+		padding-top: 6em;
+		.side {
+			padding-top: 4em;
+		}
+		.thumbnail {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}

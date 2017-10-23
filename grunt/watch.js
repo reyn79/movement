@@ -12,7 +12,7 @@ module.exports = {
   },
   js: {
     files: ['<%= config.src.js %>/*.js','!<%= config.src.js %>/*.tmpl.js'],
-    tasks: ['clean:templates','jshint','handlebars', 'concat:mainjs'],
+    tasks: ['clean:templates',/*'jshint',*/'handlebars', 'concat:mainjs'],
   },
   templates: {
     files: ['<%= config.src.layouts %>/*.hbs', ],

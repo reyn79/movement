@@ -28,7 +28,8 @@ module.exports = function(grunt) {
 			libs: {
 				dist: 'src/libs/dist',
 				js: 'src/libs/js',
-				css: 'src/libs/less'
+				css: 'src/libs/less',
+				fonts: 'src/libs/fonts'
 			},
 			bower: 'bower_components'
 		},
@@ -82,7 +83,7 @@ module.exports = function(grunt) {
 		// copy dependencies eg bootstrap etc
 		'copy:libs',
 		// lint js
-		'jshint',
+		// 'eslint',
 		// create template file
 		'handlebars',
 		// compile less
@@ -91,7 +92,7 @@ module.exports = function(grunt) {
 		'concat',
 		// copy up main site resources and processed libs
 		'copy:main', 'copy:libjs',
-		// create pages from temnplates
+		// create pages from templates
 		'assemble',
 		// create server and load page
 		'connect', 'open:browser',
@@ -105,7 +106,7 @@ module.exports = function(grunt) {
 		// copy dependencies eg bootstrap etc
 		'copy:libs',
 		// lint js
-		'jshint',
+		// 'eslint',
 		// create template file
 		'handlebars',
 		// compile less
@@ -132,7 +133,7 @@ module.exports = function(grunt) {
 		// copy dependencies eg bootstrap etc
 		'copy:libs',
 		// lint js
-		'jshint',
+		// 'eslint',
 		// create template file
 		'handlebars',
 		// compile less

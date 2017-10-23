@@ -1,58 +1,149 @@
 /* forms */
 
-select,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.form-control {
-  border: 2px solid #ddd;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  min-height: 45px;
-  border-radius: 0;
-  font-size: 12px;
-  color: #7a7a7a;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  background: #FFF;
-  -webkit-transition: all 200ms ease-in;
-  -o-transition: all 200ms ease-in;
-  -moz-transition: all 200ms ease-in;
-  transition: all 200ms ease-in;
+// Yellow side form
+.yellow,
+.black {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  .form-control {
+    border: none;
+    margin-bottom: 5%;
+    background-color: @blk;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    min-height: 45px;
+    border-radius: 0;
+    font-size: 1em;
+    color: @white-lt;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: all 200ms ease-in;
+    -o-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+  }
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="date"]:focus,
+  input[type="month"]:focus,
+  input[type="time"]:focus,
+  input[type="week"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="color"]:focus,
+  .form-control:focus {
+    border-color: #999;
+    background: @blk;
+    color: @yell-lt;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  textarea {
+    width: 100%;
+    padding: 12px;
+  }
+  select {
+    width: 100%;
+    padding: 6px 12px;
+    option {
+      color: @white-lt;
+      padding: 6px 12px;
+    }
+  }
+  button.btn {
+    width: 100%;
+    background-color: @white-lt;
+    color: @blk;
+    text-transform: none;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  input {
+    &:valid {
+      border-bottom: 5px solid green;
+    }
+    &:focus:invalid {
+      border-bottom: 5px solid red;
+    }
+  }
+  #errormessage {
+    color: @blk;
+  }
+  .errspan {
+    float: right;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: red;
+  }
 }
 
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.form-control:focus {
-  border-color: #999;
-  background: #FFF;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+.black {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  .form-control {
+    background-color: @blk-lt;
+    color: @white-lt;
+  }
+    textarea:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="date"]:focus,
+  input[type="month"]:focus,
+  input[type="time"]:focus,
+  input[type="week"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="color"]:focus,
+  .form-control:focus {
+    background: @yell-lt;
+    color: @blk;
+  }
+  button.btn {
+    background-color: @yell-lt;
+    color: @blk;
+  }
 }

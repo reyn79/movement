@@ -1,13 +1,15 @@
-/* Kids */
+// Styles Kids
 
 .kids {
-  .intro-banner {
-    min-height: 60%;
-    background: rgb(0, 0, 0);
-    /* Fallback for older browsers without RGBA-support */
-    background: rgba(0, 0, 0, 0.3);
-  }
-  #kids {
-    background-color: @white-lt;
-  }
+	padding-top: 4%;
+	padding-bottom: @spacer-50;
+	background-image: url(../img/bg-kids.png);
+	background-position: top right 0;
+	background-size: 80%;
+	background-repeat: no-repeat;
+	@media (min-width: @screen-md) {
+		.side {
+			padding-top: 584px;
+		}
+	}
 }

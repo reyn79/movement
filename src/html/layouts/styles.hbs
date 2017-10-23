@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body class="{{pageid}}">
+
+    <!--navigation-->
+    <!-- Fixed navbar -->
+    {{> header }}
+    <!--navigation end-->
+
+    <!-- body -->
+    <section class="{{type}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {{> body }}
+                </div>
+                <div class="col-md-4 side black">
+                    <h3>Come train with us <br><span>Your first week is free!</span></h3>
+                    {{> form trial=true button="Get your free trial!"}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- body end-->
+
+    <!--footer start-->
+    {{> footer }}
+    <!--footer end-->
+
+    <!-- Modals - placed here to avoid position relative weirdness -->
+    {{> modals}}
+    <script src="libs/js/libs.js"></script>
+    <!--script src="js/script.js"></script-->
+    <script src="js/script.js"></script>
+</body>
+</html>

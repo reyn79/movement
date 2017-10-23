@@ -1,6 +1,6 @@
 {
   "name": "bootstrap.native",
-  "version": "2.0.6",
+  "version": "2.0.14",
   "homepage": "http://thednp.github.io/bootstrap.native/",
   "authors": [
     "dnp_theme"
@@ -26,14 +26,13 @@
     "test",
     "tests"
   ],
-  "_release": "2.0.6",
+  "_release": "2.0.14",
   "_resolution": {
     "type": "version",
-    "tag": "2.0.6",
-    "commit": "e5f161424b618823be295c68a3af508bfbb12572"
+    "tag": "2.0.14",
+    "commit": "380a870b27b55767d5373d0f225a10df46f996bf"
   },
   "_source": "https://github.com/thednp/bootstrap.native.git",
   "_target": "^2.0.6",
-  "_originalSource": "bootstrap.native",
-  "_direct": true
+  "_originalSource": "bootstrap.native"
 }

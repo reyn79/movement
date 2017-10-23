@@ -4,7 +4,7 @@
   display: none;
   padding: 50px 0 50px 0;
   width: 100%;
-  background-color: #262626;
+  background-color: @blk;
   .carousel-inner > .item {
     padding: 0 120px 0 120px;
   }
@@ -15,14 +15,24 @@
       font-size: 24px;
       font-weight: 400;
       font-style: italic;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
     }
     span {
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
       color: @yell-lt;
       font-style: normal;
       display: block;
-      margin-top: 30px;
+    }
+    img {
+      width: 10%;
+    }
+  }
+  @media (max-width: @screen-sm) {
+    .carousel-control {
+      display: none;
+    }
+    .carousel-inner > .item {
+      padding: 0;
     }
   }
 }

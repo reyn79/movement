@@ -1,5 +1,4 @@
 /* Navigation */
-
 .nav > li {
   float: left;
 }
@@ -10,8 +9,8 @@
       text-align: right;
       width: 100%;
       a {
-        font-size: 2em;
-        font-family: 'Lato';
+        font-size: 1.5em;
+        font-family: "Lato";
       }
     }
   }
@@ -20,6 +19,9 @@
 .navbar-fixed-top .navbar-collapse,
 .navbar-fixed-bottom .navbar-collapse {
   max-height: none;
+  @media (max-width: @screen-sm) {
+    margin-top: @spacer-10;
+  }
 }
 
 .navbar-inverse .navbar-brand {
@@ -28,30 +30,36 @@
 
 .navbar-brand {
   padding: 0;
-}
-
-.navbar-brand img {
-  width: 50px;
+  img {
+    width: 50px;
+  }
 }
 
 .navbar {
   border: 0;
+  .container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
   .phone {
     padding-top: 24px;
-  }
-  .phone a {
-    font-size: 2em;
-    color: #fff;
-    text-transform: uppercase;
     font-weight: 600;
+  }
+  .logo {
+    @media (max-width: @screen-sm) {
+      padding-left: 5%;
+    }
+  }
+  .navbar-toggle {
+    margin-top: 15px;
   }
 }
 
 .navbar-nav {
   > li {
-  	a {
-	    line-height: 30px;
-  	}
+    a {
+      line-height: 30px;
+    }
     > .dropdown-menu {
       margin-top: 0;
       border-radius: 15px;
@@ -62,50 +70,50 @@
   }
   .dropdown-toggle {
     span.glyphicon {
-      font-size: .8em;
+      font-size: 0.8em;
     }
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: @screen-sm) and (max-width: @screen-md) {
   #collapseone .navbar-nav {
     width: 80%;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: @screen-md) {
   .navbar-nav {
     float: left;
-    margin-left: 30px;
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 0;
-    padding-top: 17px;
+    padding-top: 0;
   }
 }
 
-@media(min-width:768px) {
+@media (min-width: @screen-sm) {
   .navbar-collapse {
     .nav {
       > li {
         text-align: left;
         width: auto;
         a {
-          font-size: 1.1em;
+          font-size: 0.9em;
         }
       }
     }
   }
   header.navbar-inverse {
-    padding: 10px 0;
+    padding: 0;
     background-color: #333;
+    // rgba(0, 0, 0, 0.75)
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
   }
   header.stuck {
-    background-color: rgba(0, 0, 0, .90);
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 0px 0;
     opacity: 1;
     -webkit-box-shadow: 0px 1px 5px rgba(100, 100, 100, 0.3);
@@ -121,51 +129,52 @@
 .navbar-social {
   position: absolute;
   right: 20px;
-  top: -3px;
-  >li>a>i {
-    font-size: 19px;
+  top: 10px;
+  i {
+    font-size: 1.5em;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: @screen-sm) {
   .navbar-social {
     right: 75px;
+    top: 10px;
   }
 }
 
-.navbar-inverse .navbar-nav>li>a {
+.navbar-inverse .navbar-nav > li > a {
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
 }
 
-.navbar-inverse .navbar-nav>li>a:hover {
+.navbar-inverse .navbar-nav > li > a:hover {
   color: @yell-lt;
 }
 
-.navbar-inverse .navbar-nav>.open>a,
-.navbar-inverse .navbar-nav>.open>a:hover,
-.navbar-inverse .navbar-nav>.open>a:focus {
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
   color: #fff;
   background-color: transparent;
 }
 
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:hover,
-.navbar-inverse .navbar-nav>.active>a:focus {
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
   color: @yell-lt;
   background-color: transparent;
 }
 
-.navbar-inverse .navbar-nav>.special>a,
-.navbar-inverse .navbar-nav>.special>a:hover,
-.navbar-inverse .navbar-nav>.special>a:focus {
-  background-color: #FEDF22 !important;
+.navbar-inverse .navbar-nav > .special > a,
+.navbar-inverse .navbar-nav > .special > a:hover,
+.navbar-inverse .navbar-nav > .special > a:focus {
+  background-color: #fedf22 !important;
   color: #000 !important;
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 767px) {
+@media (max-width: @screen-sm) {
   .navbar-nav .open .dropdown-menu .dropdown-menu > li > a {
     padding-left: 60px !important;
     color: #ddd !important;

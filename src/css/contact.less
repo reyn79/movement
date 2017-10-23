@@ -1,0 +1,60 @@
+body.contact {
+	padding-top: 4em;
+	// background-color: @yell-lt;
+	h1 {
+		color: @yell-lt;
+		text-transform: uppercase;
+		span {
+			font-weight: 900;
+			font-size: 1em;
+		}
+	}
+	.form {
+		color: @white-lt;
+		padding-top: 4%;
+		padding-bottom: 4%;
+		h2 {
+			font-size: 1.7em;
+			color: @white-lt;
+			text-transform: capitalize;
+			letter-spacing: 1px;
+			font-weight: 900;
+		}
+		a,
+		p {
+			color: @white-lt;
+			&.bg-danger,
+			&.bg-success {
+				color: @blk;
+			}
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+			i {
+				font-size: 1.5em;
+			}
+			li {
+				padding-bottom: 10px;
+				span {
+					padding-left: @spacer-10;
+					vertical-align: top;
+					font-weight: 900;
+				}
+			}
+		}
+		.big {
+			font-size: 1.1em;
+			font-weight: 900;
+			span {
+				font-weight: 900;
+			}
+		}
+	}
+	@media (min-width: @screen-sm) and (max-width: @screen-md) {
+		padding-top: 8em;
+	}
+	@media (min-width: @screen-md) {
+		padding-top: 6em;
+	}
+}

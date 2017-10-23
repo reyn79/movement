@@ -1,19 +1,44 @@
 {
-  "navitem": [{
-    "key": "Home",
-    "data": "index.html",
-    "class": "home hidden-md hidden-lg"
-  }, {
-    "key": "Who are movement?",
-    "data": "about.html",
-    "class": "about"
-  }, {
-    "key": "Class schedules",
-    "data": "timetable.html",
-    "class": "timetable"
-  }, {
-    "key": "Kids program",
-    "data": "kids.html",
-    "class": "kids"
-  }]
+  "navitem": [
+    {
+      "key": "Home",
+      "data": "index.html",
+      "class": "home hidden-md hidden-lg"
+    },
+    {
+      "key": "About",
+      "data": "about.html",
+      "class": "about"
+    },
+    {
+      "key": "Styles",
+      "data": "index.html#intro-styles",
+      "class": "styles"
+    },
+    {
+      "key": "Facilities",
+      "data": "facilities.html",
+      "class": "facilities"
+    },
+    {
+      "key": "Timetable",
+      "data": "timetable.html",
+      "class": "timetable"
+    },
+    {
+      "key": "FAQ",
+      "data": "faq.html",
+      "class": "faq"
+    },
+    {
+      "key": "Contact us",
+      "data": "contact.html",
+      "class": "contact"
+    },
+    {
+      "key": "Free Trial",
+      "data": "freetrial.html",
+      "class": "freetrialnav special"
+    }
+  ]
 }
