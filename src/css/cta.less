@@ -12,11 +12,17 @@
 	}
 	h2 {
 		color: @blk;
+		font-size: 2.5em;
+		font-weight: 900;
 	}
 	.btn {
 		font-size: 1em;
 		letter-spacing: 3px;
 		font-weight: 900;
+		padding: 15px;
+		padding-left: 30px;
+		padding-right: 30px;
+		width: 14.5em;
 	}
 	.btn-white {
 		background-color: @white-lt;
@@ -25,6 +31,14 @@
 	.btn-black {
 		background-color: @blk;
 		color: @white-lt;
+	}
+	.hometimetable {
+		margin-right: 0;
+		margin-bottom: @spacer-20;
+		@media (min-width: @screen-sm) {
+			margin-right: @spacer-20;
+			margin-bottom: 0;
+		}
 	}
 }
 

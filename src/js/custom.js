@@ -35,7 +35,6 @@ var movement = (function() {
 				"img/bjj/P1020824.jpg"
 			],
 			mt: [
-				"img/mt/1020962.jpg",
 				"img/mt/DSCF0424.jpg",
 				"img/mt/DSCF0530.jpg",
 				"img/mt/DSCF1707.jpg",
@@ -54,7 +53,8 @@ var movement = (function() {
 				"img/mt/DSCF2853.jpg",
 				"img/mt/DSCF5828.jpg",
 				"img/mt/DSCF5830.jpg",
-				"img/mt/IMG_20170103_200108.jpg"
+				"img/mt/IMG_20170103_200108.jpg",
+				"img/mt/IMG_1141.jpg"
 			],
 			kids: [
 				"img/kids/DSCF0377.jpg",
@@ -62,7 +62,6 @@ var movement = (function() {
 				"img/kids/DSCF9786.jpg",
 				"img/kids/DSCF9804.jpg",
 				"img/kids/DSCF9904.jpg",
-				"img/kids/IMG_20170124_171640.jpg",
 				"img/kids/P1020184.jpg",
 				"img/kids/P1020565.jpg",
 				"img/kids/P1020605.jpg",
@@ -79,6 +78,14 @@ var movement = (function() {
 				"img/mma/DSCF1928.jpg"
 			]
 		},
+		facilities: [
+			"entrance.jpg",
+			"DSCF1540.jpg",
+			"DSCF1557.jpg",
+			"DSCF1579.jpg",
+			"DSCF1615.jpg",
+			"DSCF1648.jpg"
+		],
 		imgPath: "img/",
 		testCar: "src/html/inc/car-item.hbs"
 	};
@@ -90,7 +97,8 @@ var movement = (function() {
 		NAVITEM: "js-nav-item",
 		SMOOTHLINK: "js-smooth-link",
 		CAROUSEL: "carousel-inner",
-		INTRO: "intro-banner"
+		INTRO: "intro-banner",
+		MAPWRAP: "map-wrapper"
 	};
 	/**
 	 * [ID holds ID references for DOM elements]
@@ -100,7 +108,8 @@ var movement = (function() {
 		INFO: "intro-text",
 		TESTCARCONT: "testimonials",
 		TESTCARPAR: "test-car",
-		CONTACT: "contactForm"
+		CONTACT: "contactForm",
+		FACILITIESIMG: "facilities-images"
 	};
 	var _helpers = {
 		/**
@@ -309,15 +318,21 @@ var movement = (function() {
 			var name = document.getElementById("name");
 			var email = document.getElementById("email");
 			var phone = document.getElementById("phone");
-			// var enquiry = document.getElementById("enquiry");
+			var enquiry = document.getElementById("enquiry");
+			var message = document.getElementById("message");
 			// Basic check
 			if (this.checkValidity()) {
 				var data = {
 					name: name.value,
 					email: email.value,
-					phone: phone.value /*,
-					enquiry: enquiry.value*/
+					phone: phone.value
 				};
+				if (enquiry) {
+					data.enquiry = enquiry.value;
+				}
+				if (message) {
+					data.message = message.value;
+				}
 				_private.sendForm(data);
 			} else {
 				// setup messages
@@ -449,6 +464,10 @@ var movement = (function() {
 			// jscs:enable
 			/* jshint ignore:end */
 		},
+		/**
+		 * [stylesCarousels description]
+		 * @return {[type]} [description]
+		 */
 		stylesCarousels: function() {
 			// for each styles
 			var bjj = document.getElementById("bjjCar");
@@ -523,8 +542,6 @@ var movement = (function() {
 		 * @return {[void]} [manipulates DOM]
 		 */
 		initCarousel: function(par) {
-			/* jshint ignore:start */
-			// jscs:disable
 			// grab the carousel element
 			var myCarousel = document.getElementById(par);
 			// initialize with some options
@@ -535,20 +552,40 @@ var movement = (function() {
 				keyboard: false,
 				indicators: false
 			});
-			// jscs:enable
-			/* jshint ignore:end */
+		},
+		/**
+		 * [facilitiesImg description]
+		 * @return {[type]} [description]
+		 */
+		facilitiesImg: function() {
+			// grab the fac images parent
+			var facImg = document.getElementById(ID.FACILITIESIMG);
+			if (facImg) {
+				// pre compiled handlebars template reference
+				var postTemplate =
+					movement.templates["src/html/inc/facilities-image.hbs"];
+				var html = postTemplate(CONST.facilities);
+				facImg.innerHTML = html;
+			}
 		},
 		/**
 		 * Randomly changes the background image of the body on load
 		 * @return {[void]}
 		 */
 		changeBg: function() {
-			var bg =
-				CONST.bgArray[Math.floor(Math.random() * CONST.bgArray.length)];
-			var imageUrl = "url(" + CONST.imgPath + bg + ")";
 			var el = document.getElementsByClassName(CLASSES.INTRO);
-			for (var i = el.length - 1; i >= 0; i--) {
-				_helpers.css(el[i], { "background-image": imageUrl });
+			if (el && el.length > 0) {
+				var i = 0;
+				setInterval(function() {
+					_helpers.css(el[0], {
+						"background-image":
+							"url(" + CONST.imgPath + CONST.bgArray[i] + ")"
+					});
+					i = i + 1;
+					if (i == CONST.bgArray.length) {
+						i = 0;
+					}
+				}, 5000);
 			}
 		},
 		/**
@@ -643,6 +680,30 @@ var movement = (function() {
 		emailSend: function() {
 			var el = document.getElementById(ID.CONTACT);
 			_helpers.addEvent(el, "submit", _private.emailPage);
+		},
+		/**
+		 * [mapScroll description]
+		 * @return {[type]} [description]
+		 */
+		mapScroll: function() {
+			// get google map div
+			var map = document.getElementById("map");
+			if (map) {
+				var mapWrapper = document.getElementsByClassName(
+					CLASSES.MAPWRAP
+				);
+				var on = function() {
+					_helpers.removeClass(map, "scrolloff");
+				};
+				var off = function() {
+					_helpers.addClass(map, "scrolloff");
+				};
+				// add class to google map div
+				_helpers.addClass(map, "scrolloff");
+				// remove on click
+				_helpers.addEvent(mapWrapper[0], "click", on);
+				_helpers.addEvent(mapWrapper[0], "mouseleave", off);
+			}
 		}
 	};
 	/**
@@ -659,7 +720,9 @@ var movement = (function() {
 		smoothLink: _private.smoothLink,
 		scrollCta: _private.scrollCta,
 		emailSend: _private.emailSend,
-		stylesCarousels: _private.stylesCarousels
+		stylesCarousels: _private.stylesCarousels,
+		facilitiesImg: _private.facilitiesImg,
+		mapScroll: _private.mapScroll
 	};
 	return _public;
 })();
@@ -676,6 +739,8 @@ function init() {
 	movement.loadGoogle();
 	movement.changeBg();
 	movement.stylesCarousels();
+	movement.facilitiesImg();
+	movement.mapScroll();
 	// movement.smoothLink();
 	// movement.emailSend();
 	// TODO convince to enable CTA check

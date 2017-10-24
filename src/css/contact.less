@@ -6,7 +6,7 @@ body.contact {
 		text-transform: uppercase;
 		span {
 			font-weight: 900;
-			font-size: 1.5em;
+			font-size: 1em;
 		}
 	}
 	.form {
@@ -23,6 +23,10 @@ body.contact {
 		a,
 		p {
 			color: @white-lt;
+			&.bg-danger,
+			&.bg-success {
+				color: @blk;
+			}
 		}
 		ul {
 			list-style-type: none;
