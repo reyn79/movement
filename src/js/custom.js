@@ -327,13 +327,21 @@ var movement = (function() {
 					email: email.value,
 					phone: phone.value
 				};
+				var gaLabel = "default";
 				if (enquiry) {
 					data.enquiry = enquiry.value;
+					gaLabel = "freetrial";
 				}
 				if (message) {
 					data.message = message.value;
+					gaLabel = "enquiry";
 				}
-				_private.sendForm(data);
+				// setup tracking data
+				var gaData = {
+					event_category: gaLabel,
+					event_action: "sent"
+				};
+				_private.sendForm(data, gaData);
 			} else {
 				// setup messages
 				var error = document.getElementById("errormessage");
@@ -344,19 +352,20 @@ var movement = (function() {
 		 * [sendForm Validates form and then posts to PHP]
 		 * @return {[type]} [description]
 		 */
-		sendForm: function(data) {
+		sendForm: function(data, gaData) {
 			event.preventDefault();
 
 			// post to php page
-			if (data) {
+			if (data && gaData) {
 				movement.ajax.post("mail/contact_me.php", data, function(data) {
 					// setup messages
 					var success = document.getElementById("successmessage");
 					var error = document.getElementById("errormessage");
-
 					// was it successful?
 					switch (data.status) {
 						case 200:
+							// Send google tracking
+							gtag("event", "form", gaData);
 							_helpers.removeClass(success, "hidden");
 							break;
 						default:
