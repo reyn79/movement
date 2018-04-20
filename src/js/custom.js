@@ -57,16 +57,13 @@ var movement = (function() {
 				"img/mt/IMG_1141.jpg"
 			],
 			kids: [
-				"img/kids/DSCF0377.jpg",
-				"img/kids/DSCF9769.jpg",
-				"img/kids/DSCF9786.jpg",
-				"img/kids/DSCF9804.jpg",
-				"img/kids/DSCF9904.jpg",
-				"img/kids/P1020184.jpg",
-				"img/kids/P1020565.jpg",
-				"img/kids/P1020605.jpg",
-				"img/kids/P1020627.jpg",
-				"img/kids/P1020724.jpg"
+				"img/kids/IMG-20180322-WA0008.jpg",
+				"img/kids/IMG-20180314-WA0003.jpg",
+				"img/kids/IMG-20180207-WA0004.jpg",
+				"img/kids/IMG-20171207-WA0016.jpg",
+				"img/kids/DSCF3453.jpg",
+				"img/kids/DSCF3400.jpg",
+				"img/kids/IMG-20180410-WA0001.jpg"
 			],
 			mma: [
 				"img/mma/DSCF1877.jpg",
@@ -366,6 +363,8 @@ var movement = (function() {
 						case 200:
 							// Send google tracking
 							gtag("event", "form", gaData);
+							// facebook pixel event
+							fbq('track', 'Lead');
 							_helpers.removeClass(success, "hidden");
 							break;
 						default:
