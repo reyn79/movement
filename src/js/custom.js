@@ -713,6 +713,46 @@ var movement = (function() {
 				_helpers.addEvent(mapWrapper[0], "click", on);
 				_helpers.addEvent(mapWrapper[0], "mouseleave", off);
 			}
+		},
+		/**
+		 * Finds any timetables and formats them in mobile mode
+		 *
+		 */
+		mobileTimeTable: function() {
+			// Timetable
+			// set up days of the week classes
+			var days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+			//add day of the week class to table cells
+			var bjjTable = document.getElementById("bjj");
+			var cells = bjjTable.getElementsByTagName("td");
+			// console.log("cells = ", cells);
+			for (var i = 0; i < cells.length; i++) {
+				// console.log(cells[i].cellIndex);
+				console.log("the day = ", days[cells[i].cellIndex - 1]);
+				if (cells[i].cellIndex === 0) {
+					_helpers.addClass(cells[i], "time");
+					// $(this).addClass("time");
+				}
+				if (cells[i].cellIndex > 0) {
+					_helpers.addClass(cells[i], days[cells[i].cellIndex - 1]);
+					// $(this).addClass(days[index - 1]);
+				}
+			}
+			var addDay = function() {
+				console.log("YEP");
+			};
+			var dayChangeButton = document.getElementById("timetable-select");
+			_helpers.addEvent(dayChangeButton, "change", addDay);
+
+			// add default day
+			// $("#tables")
+			// 	.find("table")
+			// 	.addClass("Monday");
+			// add day of week selected as class to table
+			// $("#timetable-select").on("change", function() {
+			// 	$("#tables table").attr("class", "table table-bordered");
+			// 	$("#tables table").addClass(this.value);
+			// });
 		}
 	};
 	/**
@@ -731,7 +771,8 @@ var movement = (function() {
 		emailSend: _private.emailSend,
 		stylesCarousels: _private.stylesCarousels,
 		facilitiesImg: _private.facilitiesImg,
-		mapScroll: _private.mapScroll
+		mapScroll: _private.mapScroll,
+		mobileTimeTable: _private.mobileTimeTable
 	};
 	return _public;
 })();
@@ -750,6 +791,7 @@ function init() {
 	movement.stylesCarousels();
 	movement.facilitiesImg();
 	movement.mapScroll();
+	movement.mobileTimeTable();
 	// movement.smoothLink();
 	// movement.emailSend();
 	// TODO convince to enable CTA check

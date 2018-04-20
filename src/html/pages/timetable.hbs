@@ -6,7 +6,7 @@ pageid: "timetable"
 <section cl>
     <div class="container">
         <div class="row">
-        <div class="col-md-12">
+            <div class="col-md-12">
                 <h2>Class timetable</h2>
             </div>
         </div>
@@ -31,10 +31,21 @@ pageid: "timetable"
                             <a href="#kids" data-toggle="tab" data-height="true" aria-controls="kids" role="tab">Kids</a>
                         </li>
                     </ul>
+                    <div class="day-select">
+                        <select id="timetable-select">
+                            <option data-type="Monday" value="Monday">Monday</option>
+                            <option data-type="Tuesday" value="Tuesday">Tuesday</option>
+                            <option data-type="Wednesday" value="Wednesday">Wednesday</option>
+                            <option data-type="Thursday" value="Thursday">Thursday</option>
+                            <option data-type="Friday" value="Friday">Friday</option>
+                            <option data-type="Saturday" value="Saturday">Saturday</option>
+                            <option data-type="Sunday" value="Sunday">Sunday</option>
+                        </select>
+                    </div>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="bjj">
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered Monday">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -48,35 +59,35 @@ pageid: "timetable"
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>10:00AM
-                                            <br>11:00PM
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11:00AM
-                                            <br>12:30PM
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="class-active">BJJ
-                                            <br>No Gi
-                                        </td>
-                                        <td class="class-active" rowspan="2">Open Mat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12:00PM
-                                            <br>1:00PM</td>
+                                        <tr>
+                                            <td>10:00AM
+                                                <br>11:00PM
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:00AM
+                                                <br>12:30PM
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="class-active">BJJ
+                                                <br>No Gi
+                                            </td>
+                                            <td class="class-active" rowspan="2">Open Mat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12:00PM
+                                                <br>1:00PM</td>
                                             <td></td>
                                             <td class="class-active">BJJ
                                                 <br>All Levels
@@ -186,7 +197,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>10:00AM
                                                 <br>11:00AM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -199,7 +210,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>11:00AM
                                                 <br>1:00PM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -211,7 +222,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>12:00PM
                                                 <br>1:00PM
-                                                </td>
+                                            </td>
                                             <td class="class-active">Muay Thai
                                                 <br>All Levels</td>
                                             <td></td>
@@ -225,7 +236,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>5:30PM
                                                 <br>6:30PM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td class="class-active">Muay Thai
@@ -238,7 +249,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>6:00PM
                                                 <br>8:00PM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -296,7 +307,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>9:00AM
                                                 <br>10:00AM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -306,11 +317,11 @@ pageid: "timetable"
                                                 <br>Invitation Only</td>
                                             <td></td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td>11:00AM
                                                 <br>1:00PM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -322,7 +333,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>5:00PM
                                                 <br>6:00PM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -335,7 +346,7 @@ pageid: "timetable"
                                         <tr>
                                             <td>6:00PM
                                                 <br>8:00PM
-                                                </td>
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -367,9 +378,11 @@ pageid: "timetable"
                                         <tr>
                                             <td>4:30PM
                                                 <br>5:15PM</td>
-                                            <td class="class-active">Kids<br>Muay Thai</td>
+                                            <td class="class-active">Kids
+                                                <br>Muay Thai</td>
                                             <td></td>
-                                            <td class="class-active">Kids<br>Muay Thai</td>
+                                            <td class="class-active">Kids
+                                                <br>Muay Thai</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -393,7 +406,9 @@ pageid: "timetable"
                     </div>
 
                 </div>
-                <p><a href="media/full_timetable.pdf">Download full timetable here</a></p>
+                <p>
+                    <a href="media/full_timetable.pdf">Download full timetable here</a>
+                </p>
             </div>
         </div>
     </div>

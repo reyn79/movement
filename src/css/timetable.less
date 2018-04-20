@@ -1,64 +1,145 @@
 /* Timetable */
 
 body.timetable {
-  padding-top: 4.9em;
-  .timetablesGroup {
-    padding-bottom: 4em;
-    background-color: @blk;
-    td,
-    th {
-      font-weight: 500;
-      color: @white-lt;
-      text-align: center;
-    }
-    th {
-      text-transform: capitalize;
-      width: 12.5%;
-    }
-    .class-active {
-      background-color: @yell-lt;
-      color: @blk;
-    }
-    .nav {
-      li {
-        margin-right: @spacer-20;
-        @media (max-width: @screen-xs) {
-          width: 100%;
-        }
-      }
-      a {
-        padding: 1em 2em;
-        font-weight: 900;
-        background: #000;
-        color: #fff;
-        width: 100%;
-        text-align: center;
-        border: 1px solid @white-lt;
-      }
-      .active {
-        a {
-          background-color: @yell-lt;
-          color: @blk;
-          border: 1px solid @yell-lt;
-        }
-      }
-    }
+	padding-top: 4.9em;
+	.timetablesGroup {
+		padding-bottom: 4em;
+		background-color: @blk;
+		td,
+		th {
+			font-weight: 500;
+			color: @white-lt;
+			text-align: center;
+		}
+		th {
+			text-transform: capitalize;
+			width: 12.5%;
+		}
+		.class-active {
+			background-color: @yell-lt;
+			color: @blk;
+		}
+		.nav {
+			li {
+				margin-right: @spacer-20;
+				@media (max-width: @screen-xs) {
+					width: 100%;
+				}
+			}
+			a {
+				padding: 1em 2em;
+				font-weight: 900;
+				background: #000;
+				color: #fff;
+				width: 100%;
+				text-align: center;
+				border: 1px solid @white-lt;
+			}
+			.active {
+				a {
+					background-color: @yell-lt;
+					color: @blk;
+					border: 1px solid @yell-lt;
+				}
+			}
+		}
 
-    @media (min-width: @screen-sm) {
-      .nav {
-        li {
-          margin-right: 0;
-        }
-        a {
-          width: 13em;
-        }
-      }
+		@media (min-width: @screen-sm) {
+			.nav {
+				li {
+					margin-right: 0;
+				}
+				a {
+					width: 13em;
+				}
+			}
+		}
+	}
+	@media (min-width: @screen-sm) and (max-width: @screen-md) {
+		padding-top: 9em;
+	}
+	@media (min-width: @screen-md) {
+		padding-top: 6em;
+	}
+	@media (min-width: 767px) {
+		.day-select {
+			display: none !important;
+		}
+	}
+	@media only screen and (max-width: @screen-md) {
+    #myTabs {
+      display:none;
     }
-  }
-  @media (min-width: @screen-sm) and (max-width: @screen-md) {
-    padding-top: 9em;
-  }
-  @media (min-width: @screen-md) {
-    padding-top: 6em;
-  }
+		.day-select {
+			display: block;
+			width: 100%;
+			padding: 5px;
+			color: #444444;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+		.day-select select {
+			padding: 10px;
+			width: 50%;
+			display: inline-block;
+			font-size: 15px;
+			margin-bottom: 15px;
+		}
+		table thead th {
+			display: none;
+		}
+		table td {
+			width: 70%;
+		}
+		table td.time {
+			width: 30%;
+			font-size: 13px;
+			display: table-cell !important;
+		}
+		table tbody td {
+			display: none;
+		}
+		table.Monday td {
+			display: table-cell;
+		}
+		table.Monday tbody td:not(.mon) {
+			display: none;
+		}
+		table.Tuesday td {
+			display: table-cell;
+		}
+		table.Tuesday tbody td:not(.tue) {
+			display: none;
+		}
+		table.Wednesday td {
+			display: table-cell;
+		}
+		table.Wednesday tbody td:not(.wed) {
+			display: none;
+		}
+		table.Thursday td {
+			display: table-cell;
+		}
+		table.Thursday tbody td:not(.thu) {
+			display: none;
+		}
+		table.Friday td {
+			display: table-cell;
+		}
+		table.Friday tbody td:not(.fri) {
+			display: none;
+		}
+		table.Saturday td {
+			display: table-cell;
+		}
+		table.Saturday tbody td:not(.sat) {
+			display: none;
+		}
+		table.Sunday td {
+			display: table-cell;
+		}
+		table.Sunday tbody td:not(.sun) {
+			display: none;
+		}
+	}
 }

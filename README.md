@@ -30,10 +30,10 @@ Run 'npm install' to install npm dependencies
 npm install
 ```
 
-Run 'grunt' on the folder to build and run local server for dev
+Build and run local server for dev
 
 ```
-grunt
+npm run build
 ```
 
 ## Deployment
