@@ -32,50 +32,54 @@ var movement = (function() {
 				"img/bjj/DSCF9751.jpg",
 				"img/bjj/Movement Martial Arts-81.jpg",
 				"img/bjj/P1000392.jpg",
-				"img/bjj/P1020824.jpg"
+				"img/bjj/P1020824.jpg",
+				"img/bjj/IMG-20171207-WA0010.jpg",
+				"img/bjj/IMG-20180219-WA0001.jpg",
+				"img/bjj/IMG-20180213-WA0005.jpg",
+				"img/bjj/P1100794.jpg",
+				"img/bjj/P1020886.jpg",
+				"img/bjj/P1070952.jpg",
+				"img/bjj/P1080921.jpg"
 			],
 			mt: [
+				"img/mt/1020962.jpg",
 				"img/mt/DSCF0424.jpg",
 				"img/mt/DSCF0530.jpg",
-				"img/mt/DSCF1707.jpg",
-				"img/mt/DSCF1712.jpg",
-				"img/mt/DSCF1713.jpg",
 				"img/mt/DSCF1723.jpg",
-				"img/mt/DSCF1749.jpg",
 				"img/mt/DSCF1764.jpg",
-				"img/mt/DSCF1771.jpg",
-				"img/mt/DSCF1772.jpg",
 				"img/mt/DSCF1776.jpg",
-				"img/mt/DSCF1794.jpg",
-				"img/mt/DSCF1801.jpg",
-				"img/mt/DSCF1811.jpg",
-				"img/mt/DSCF1824.jpg",
 				"img/mt/DSCF2853.jpg",
 				"img/mt/DSCF5828.jpg",
-				"img/mt/DSCF5830.jpg",
 				"img/mt/IMG_20170103_200108.jpg",
-				"img/mt/IMG_1141.jpg"
+				"img/mt/IMG-20171203-WA0021.jpg",
+				"img/mt/P1090011.jpg",
+				"img/mt/P1090082.jpg",
+				"img/mt/P1100337.jpg",
+				"img/mt/P1100458.jpg",
+				"img/mt/P1100601.jpg"
+
 			],
 			kids: [
-				"img/kids/DSCF0377.jpg",
-				"img/kids/DSCF9769.jpg",
+				"img/kids/IMG-20180322-WA0008.jpg",
+				"img/kids/IMG-20180314-WA0003.jpg",
+				"img/kids/IMG-20180207-WA0004.jpg",
+				"img/kids/IMG-20171207-WA0016.jpg",
+				"img/kids/DSCF3453.jpg",
+				"img/kids/DSCF3400.jpg",
+				"img/kids/IMG-20180410-WA0001.jpg",
+				"img/kids/IMG_20170124_171640.jpg",
 				"img/kids/DSCF9786.jpg",
-				"img/kids/DSCF9804.jpg",
-				"img/kids/DSCF9904.jpg",
-				"img/kids/P1020184.jpg",
-				"img/kids/P1020565.jpg",
 				"img/kids/P1020605.jpg",
 				"img/kids/P1020627.jpg",
 				"img/kids/P1020724.jpg"
 			],
 			mma: [
 				"img/mma/DSCF1877.jpg",
-				"img/mma/DSCF1884.jpg",
-				"img/mma/DSCF1905.jpg",
-				"img/mma/DSCF1917.jpg",
-				"img/mma/DSCF1922.jpg",
 				"img/mma/DSCF1925.jpg",
-				"img/mma/DSCF1928.jpg"
+				"img/mma/DSCF1928.jpg",
+				"img/mma/P1110162.jpg",
+				"img/mma/P1110222.jpg",
+				"img/mma/P1120008.jpg"
 			]
 		},
 		facilities: [
@@ -366,6 +370,8 @@ var movement = (function() {
 						case 200:
 							// Send google tracking
 							gtag("event", "form", gaData);
+							// facebook pixel event
+							fbq('track', 'Lead');
 							_helpers.removeClass(success, "hidden");
 							break;
 						default:
