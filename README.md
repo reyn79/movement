@@ -33,7 +33,7 @@ npm install
 Run 'grunt' on the folder to build and run local server for dev
 
 ```
-grunt
+npm run build
 ```
 
 ## Deployment
